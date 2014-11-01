@@ -1,0 +1,25 @@
+<%= form_for(@directory) do |f| %>
+  <% if @directory.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@directory.errors.count, "error") %> prohibited this directory from being saved:</h2>
+
+      <ul>
+      <% @directory.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :directory_name %><br>
+    <%= f.text_field :directory_name %>
+  </div>
+  <div class="field">
+    <%= f.label :is_terminal %><br>
+    <%= f.check_box :is_terminal %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

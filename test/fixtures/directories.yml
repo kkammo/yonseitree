@@ -1,0 +1,9 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  directory_name: MyString
+  is_terminal: false
+
+two:
+  directory_name: MyString
+  is_terminal: false

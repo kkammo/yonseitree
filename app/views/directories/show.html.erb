@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Directory name:</strong>
+  <%= @directory.directory_name %>
+</p>
+
+<p>
+  <strong>Is terminal:</strong>
+  <%= @directory.is_terminal %>
+</p>
+
+<%= link_to 'Edit', edit_directory_path(@directory) %> |
+<%= link_to 'Back', directories_path %>
