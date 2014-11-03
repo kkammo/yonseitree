@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+
   root :to => "home#index"
 
   # devise_for :users
@@ -8,10 +9,22 @@ Rails.application.routes.draw do
     resources :comments
   end
 
-  resources :directories do
-    resources :projects
-    resources :directories
+  resources :directory_semesters do
+    resources :directory_classes
   end
+
+  resources :directory_classes do
+    resource :directory_homeworks
+  end
+
+  resources :directory_homeworks do
+    resources :projects
+  end
+
+  #resources :directories do
+  #  resources :projects
+  #  resources :directories
+  #end
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
