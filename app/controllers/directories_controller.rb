@@ -42,6 +42,13 @@ class DirectoriesController < ApplicationController
 
   def update
     @directory.update(directory_params)
+    respond_to do |format|
+      if @directory.save
+        format.html { redirect_to directory_path(@directory), notice: 'Directory edited'}
+      else
+        format.html { render action: "new" }
+      end
+    end
   end
 
   def destroy
