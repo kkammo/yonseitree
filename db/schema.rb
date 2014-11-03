@@ -11,7 +11,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< HEAD
 ActiveRecord::Schema.define(version: 20141103093316) do
+=======
+ActiveRecord::Schema.define(version: 20141103101123) do
+>>>>>>> 01c12b95848a53f8227cafaf91a55e0ac9d1c3d5
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -30,7 +34,6 @@ ActiveRecord::Schema.define(version: 20141103093316) do
 
   create_table "directories", force: true do |t|
     t.string   "directory_name"
-    t.boolean  "is_terminal"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "user_id"

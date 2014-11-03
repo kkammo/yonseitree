@@ -10,7 +10,10 @@ Rails.application.routes.draw do
 
   resources :directories do
     resources :projects
+<<<<<<< HEAD
     resources :directories
+=======
+>>>>>>> 01c12b95848a53f8227cafaf91a55e0ac9d1c3d5
   end
 
   # The priority is based upon order of creation: first created -> highest priority.

@@ -6,9 +6,10 @@
 </p>
 
 <p>
-  <strong>Is terminal:</strong>
-  <%= @directory.is_terminal %>
+  <strong>Directory type:</strong>
+  <%= @directory.directory_type %>
 </p>
+
 
 <%= link_to 'Edit', edit_directory_path(@directory) %> |
 <%= link_to 'Back', directories_path %>

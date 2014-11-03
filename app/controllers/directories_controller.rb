@@ -4,6 +4,10 @@ class DirectoriesController < ApplicationController
 
   def index
     @directories = Directory.all
+<<<<<<< HEAD
+=======
+
+>>>>>>> 01c12b95848a53f8227cafaf91a55e0ac9d1c3d5
   end
 
   def show
@@ -17,6 +21,10 @@ class DirectoriesController < ApplicationController
 
   def new
     @directory = Directory.new
+<<<<<<< HEAD
+=======
+
+>>>>>>> 01c12b95848a53f8227cafaf91a55e0ac9d1c3d5
   end
 
   def edit
@@ -36,10 +44,18 @@ class DirectoriesController < ApplicationController
 
   def update
     @directory.update(directory_params)
+<<<<<<< HEAD
+=======
+
+>>>>>>> 01c12b95848a53f8227cafaf91a55e0ac9d1c3d5
   end
 
   def destroy
     @directory.destroy
+<<<<<<< HEAD
+=======
+
+>>>>>>> 01c12b95848a53f8227cafaf91a55e0ac9d1c3d5
   end
 
   private
