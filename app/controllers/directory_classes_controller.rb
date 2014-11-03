@@ -8,8 +8,9 @@ class DirectoryClassesController < ApplicationController
 
   def show
     @directory_class = DirectoryClass.find(params[:id])
+    @directory_homeworks = @directory_class.directory_homeworks
 
-    redirect_to directory_class_directory_homeworks_path(@directory_class)
+    redirect_to directory_homeworks_path(@directory_homeworks)
     
     #respond_to do |format|
     #  format.html #show.html.erb

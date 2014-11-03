@@ -7,8 +7,9 @@ class DirectorySemestersController < ApplicationController
 
   def show
     @directory_semester = DirectorySemester.find(params[:id])
+    @directory_classes = @directory_semester.directory_classes
 
-    redirect_to directory_semester_directory_classes_path(@directory_semester)
+    redirect_to directory_classes_path(@directory_classes)
 
     #respond_to do |format|
     #  format.html

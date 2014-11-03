@@ -27,7 +27,7 @@ class DirectoryHomeworksController < ApplicationController
   end
 
   def create
-    @directory_homework = DirectorySemester.new(directory_homework_params)
+    @directory_homework = DirectoryHomework.new(directory_homework_params)
     respond_to do |format|
       if @directory_homework.save
         format.html { redirect_to directory_homework_path(@directory_homework), notice: 'Directory created'}
@@ -49,7 +49,7 @@ class DirectoryHomeworksController < ApplicationController
 
   private
     def set_directory_homework
-      @directory_homework = DirectoryHomework.find(params[:directory_class_id])
+      @directory_homework = DirectoryHomework.find(params[:id])
     end
 
     def directory_homework_params
