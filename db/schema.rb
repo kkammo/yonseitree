@@ -32,7 +32,6 @@ ActiveRecord::Schema.define(version: 20141103101123) do
     t.string   "directory_name"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "user_id"
     t.string   "directory_type"
   end
 
