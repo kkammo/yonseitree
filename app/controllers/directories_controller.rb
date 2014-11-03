@@ -27,8 +27,6 @@ class DirectoriesController < ApplicationController
 
   def create
     @directory = Directory.new(directory_params)
-    @directory.save
-    #respond_with(@directory)    
 
     respond_to do |format|
       if @directory.save

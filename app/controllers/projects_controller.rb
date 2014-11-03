@@ -3,16 +3,13 @@ class ProjectsController < ApplicationController
 
   def index
     @projects = Project.all
-    respond_with(@projects)
   end
 
   def show
-    respond_with(@project)
   end
 
   def new
     @project = Project.new
-    respond_with(@project)
   end
 
   def edit
@@ -20,18 +17,22 @@ class ProjectsController < ApplicationController
 
   def create
     @project = Project.new(project_params)
-    @project.save
-    respond_with(@project)
+
+    respond_to do |format|
+      if @project.save
+        format.html { redirect_to project_path(@project), notice: 'Project created'}
+      else
+        format.html { render action: "new" }
+      end
+    end
   end
 
   def update
     @project.update(project_params)
-    respond_with(@project)
   end
 
   def destroy
     @project.destroy
-    respond_with(@project)
   end
 
   private
