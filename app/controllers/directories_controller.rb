@@ -2,7 +2,7 @@ class DirectoriesController < ApplicationController
   before_action :set_directory, only: [:show, :edit, :update, :destroy]
   before_filter :require_user
 
-#checking!!!
+# by KWONY
   def index
     @directories = Directory.all
 
@@ -23,6 +23,12 @@ class DirectoriesController < ApplicationController
   end
 
   def edit
+    @directory = Directory.find(params[:id])
+
+    respond_to do |format|
+      format.html #show.html.erb
+      format.xml { render :xml => @directory }
+    end
   end
 
   def create
@@ -38,12 +44,26 @@ class DirectoriesController < ApplicationController
   end
 
   def update
-    @directory.update(directory_params)
+
+    respond_to do |format|
+      if @directory.update(directory_params)
+        format.html { redirect_to directory_path(@directory), notice: 'Directory updated'}
+      else
+        format.html { render action: "new" }
+      end
+    end
 
   end
 
   def destroy
-    @directory.destroy
+    
+    respond_to do |format|
+      if @directory.destroy
+        format.html { redirect_to directories_path, notice: 'Directory destroyed'}
+      else
+        format.html { render action: "new" }
+      end
+    end
 
   end
 
