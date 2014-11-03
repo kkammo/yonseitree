@@ -53,6 +53,6 @@ class DirectoriesController < ApplicationController
     end
 
     def directory_params
-      params.require(:directory).permit(:directory_name, :is_terminal)
+      params.require(:directory).permit(:directory_name, :directory_type)
     end
 end
