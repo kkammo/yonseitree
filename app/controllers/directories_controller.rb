@@ -2,10 +2,8 @@ class DirectoriesController < ApplicationController
   before_action :set_directory, only: [:show, :edit, :update, :destroy]
   before_filter :require_user
 
-#checking!!!
   def index
     @directories = Directory.all
-#    respond_with(@directories)
   end
 
   def show
@@ -19,7 +17,6 @@ class DirectoriesController < ApplicationController
 
   def new
     @directory = Directory.new
-    #respond_with(@directory)
   end
 
   def edit
@@ -39,12 +36,10 @@ class DirectoriesController < ApplicationController
 
   def update
     @directory.update(directory_params)
-    #respond_with(@directory)
   end
 
   def destroy
     @directory.destroy
-    #respond_with(@directory)
   end
 
   private
