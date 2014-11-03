@@ -1,4 +1,8 @@
-<%= flash[:error] %>
+<% if flash[:sign_in] %>
+	<div class="alert alert-danger">
+  	<h3 class="welcome">로그인이 필요합니다.</h3>
+	</div>
+<% end %>
 
 <h1>홈 화면</h1>
 

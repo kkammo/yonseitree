@@ -14,7 +14,7 @@ class ApplicationController < ActionController::Base
   def require_user
     unless current_user
       redirect_to root_path
-      flash[:error] = "로그인이 필요합니다."
+      flash[:sign_in] = "로그인이 필요합니다."
     end        
   end
 end
