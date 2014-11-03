@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141101130255) do
+ActiveRecord::Schema.define(version: 20141103101123) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -30,9 +30,10 @@ ActiveRecord::Schema.define(version: 20141101130255) do
 
   create_table "directories", force: true do |t|
     t.string   "directory_name"
-    t.boolean  "is_terminal"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "user_id"
+    t.string   "directory_type"
   end
 
   create_table "projects", force: true do |t|
@@ -40,7 +41,10 @@ ActiveRecord::Schema.define(version: 20141101130255) do
     t.text     "description"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "directory_id"
   end
+
+  add_index "projects", ["directory_id"], name: "index_projects_on_directory_id", using: :btree
 
   create_table "users", force: true do |t|
     t.string   "user_id",                default: "", null: false
