@@ -7,6 +7,12 @@ class ProjectsController < ApplicationController
   end
 
   def show
+    @project = Project.find(params[:id])
+
+    respond_to do |format|
+      format.html
+      format.xml { render :xml => @project }
+    end
   end
 
   def new
@@ -14,6 +20,12 @@ class ProjectsController < ApplicationController
   end
 
   def edit
+    @project = Project.find(params[:id])
+
+    respond_to do |format|
+      format.html
+      format.xml { render :xml => @project }
+    end
   end
 
   def create
@@ -30,10 +42,23 @@ class ProjectsController < ApplicationController
 
   def update
     @project.update(project_params)
+    respond_to do |format|
+      if @directory.save
+        format.html { redirect_to directory_path(@directory), notice: 'Project edited'}
+      else
+        format.html { render action: "new" }
+      end
+    end
   end
 
   def destroy
-    @project.destroy
+    respond_to do |format|
+      if @project.destroy
+        format.html { redirect_to directories_path, notice: 'Project destroyed'}
+      else
+        format.html { render action: "new" }
+      end
+    end
   end
 
   private
