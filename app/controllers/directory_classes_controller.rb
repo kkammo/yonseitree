@@ -24,7 +24,7 @@ class DirectoryClassesController < ApplicationController
 
   def edit
 
-    @directory_class = DirectoryCalss.find(params[:id])
+    @directory_class = DirectoryClass.find(params[:id])
 
     respond_to do |format|
       format.html #edit.html.erb
