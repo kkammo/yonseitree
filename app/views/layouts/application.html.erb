@@ -29,16 +29,21 @@
       <button type="submit" class="btn btn-default">Submit</button>
     </form>
     <ul class="nav navbar-nav navbar-right">
-      <li><a href="#">Link</a></li>
-      <li class="dropdown">
-        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
-        <ul class="dropdown-menu">
-          <li><a href="#">Action</a></li>
-          <li><a href="#">Another action</a></li>
-          <li><a href="#">Something else here</a></li>
-          <li><a href="#">Separated link</a></li>
-        </ul>
-      </li>
+      <% if user_signed_in? %>
+        <li>
+          <%= link_to current_user.email %>
+        </li>
+        <li style ='padding-right: 14px'> 
+          <%= link_to "Sign out", destroy_user_session_path, method: :delete %>
+        </li>
+      <% else %>
+        <li>
+          <%= link_to "Sign up", new_user_registration_path %>
+        </li>
+        <li>
+          <%= link_to "Sign in", new_user_session_path %>
+        </li>
+      <% end %>
     </ul>
     </div><!-- /.navbar-collapse -->
   </nav>
@@ -57,8 +62,7 @@
 <p class="navbar-text pull-right">
 <% if user_signed_in? %>
   Logged in as <strong><%= current_user.email %></strong>.
-  <%= link_to 'Edit profile', edit_user_registration_path, :class => 'navbar-link' %> |
-  <%= button_to "Sign out", destroy_user_session_path, method: :delete, :class => 'navbar-link'  %>
+  <%= link_to 'Edit profile', edit_user_registration_path, :class => 'navbar-link' %>
 <% else %>
   <%= link_to "Sign up", new_user_registration_path, :class => 'navbar-link'  %> |
   <%= link_to "Sign in", new_user_session_path, :class => 'navbar-link'  %>
