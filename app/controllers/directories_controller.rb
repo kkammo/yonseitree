@@ -20,6 +20,12 @@ class DirectoriesController < ApplicationController
   end
 
   def edit
+    @directory = Directory.find(params[:id])
+
+    respond_to do |format|
+      format.html #show.html.erb
+      format.xml { render :xml => @directory }
+    end
   end
 
   def create
@@ -39,7 +45,13 @@ class DirectoriesController < ApplicationController
   end
 
   def destroy
-    @directory.destroy
+    respond_to do |format|
+      if @directory.destroy
+        format.html { redirect_to directories_path, notice: 'Directory destroyed'}
+      else
+        format.html { render action: "new" }
+      end
+    end
   end
 
   private
@@ -48,6 +60,6 @@ class DirectoriesController < ApplicationController
     end
 
     def directory_params
-      params.require(:directory).permit(:directory_name, :is_terminal)
+      params.require(:directory).permit(:directory_name, :directory_type)
     end
 end
