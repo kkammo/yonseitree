@@ -1,14 +1,22 @@
 <p id="notice"><%= notice %></p>
-
+<p></p><p></p>
 <p>
-  <strong>Class name:</strong>
+  <strong>Homework name:</strong>
   <%= @directory_homework.class_name %>
 </p>
 
 <p>
-  <strong>Directory class:</strong>
-  <%= @directory_homework.directory_class %>
+<strong>Homeworks</strong>
+<% @directory_homework.projects.each do |projects| %>
+	<p>
+		<b>homework name:</b>
+		<%= projects.project_name %>	<!-- my mistake class_name....-->
+	</p>
+<% end %>
 </p>
+
+<h2> Add a projects:</h2>
+
 
 <%= link_to 'Edit', edit_directory_homework_path(@directory_homework) %> |
 <%= link_to 'Back', directory_homeworks_path %>

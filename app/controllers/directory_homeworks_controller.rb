@@ -8,8 +8,8 @@ class DirectoryHomeworksController < ApplicationController
   def show
     @directory_homework = DirectoryHomework.find(params[:id])
 
-    @projects = @directory_homework.projects
-    redirect_to projects_path(@projects)
+   # @projects = @directory_homework.projects
+   # redirect_to projects_path(@projects)
     #directory_homework_path(@directory_homework)
     #respond_with(@directory_homework)
   end
@@ -29,12 +29,15 @@ class DirectoryHomeworksController < ApplicationController
   end
 
   def create
-    @directory_homework = DirectoryHomework.new(directory_homework_params)
+
+    @directory_class = DirectoryClass.find(params[:directory_class_id])
+    @directory_homework = @directory_class.directory_homeworks.create(directory_homework_params)
+    #@directory_class = DirectoryClass.new(directory_class_params)
     respond_to do |format|
       if @directory_homework.save
         format.html { redirect_to directory_homework_path(@directory_homework), notice: 'Directory created'}
       else
-        format.html{ render action: "new"}
+        format.html{ render action: "new"}  
       end
     end
   end

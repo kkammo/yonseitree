@@ -8,9 +8,8 @@ class DirectoryClassesController < ApplicationController
 
   def show
     @directory_class = DirectoryClass.find(params[:id])
-    @directory_homeworks = @directory_class.directory_homeworks
-
-    redirect_to directory_homeworks_path(@directory_homeworks)
+    #@directory_homeworks = @directory_class.directory_homeworks
+    #redirect_to directory_homeworks_path(@directory_homeworks)
     
     #respond_to do |format|
     #  format.html #show.html.erb
@@ -34,7 +33,9 @@ class DirectoryClassesController < ApplicationController
 
   def create
 
-    @directory_class = DirectoryClass.new(directory_class_params)
+    @directory_semester = DirectorySemester.find(params[:directory_semester_id])
+    @directory_class = @directory_semester.directory_classes.create(directory_class_params)
+    #@directory_class = DirectoryClass.new(directory_class_params)
     respond_to do |format|
       if @directory_class.save
         format.html { redirect_to directory_class_path(@directory_class), notice: 'Directory created'}

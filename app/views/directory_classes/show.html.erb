@@ -1,14 +1,34 @@
 <p id="notice"><%= notice %></p>
-
+<p></p><p></p>
 <p>
   <strong>Class name:</strong>
   <%= @directory_class.class_name %>
 </p>
 
-<p>
-  <strong>Directory semester:</strong>
-  <%= @directory_class.directory_semester %>
-</p>
+
+<p><strong>Classes</strong>
+<% @directory_class.directory_homeworks.each do |homeworks| %>
+	<p>
+		<b>homework name:</b>
+		<%= homeworks.class_name %>	<!-- my mistake class_name....-->
+		<%= link_to 'Show', directory_homework_path(homeworks) %>
+	</p>
+
+<% end %>
+
+
+<!-- where I want to add class in this category...-->
+<h2> Add a homework:</h2>
+
+<%= form_for([@directory_class, @directory_class.directory_homeworks.build]) do |f| %>
+  <p>
+    <%= f.label :class_name %><br>
+    <%= f.text_field :class_name %>
+  </p>
+  <p>
+    <%= f.submit %>
+  </p>
+<% end %>
 
 <%= link_to 'Edit', edit_directory_class_path(@directory_class) %> |
 <%= link_to 'Back', directory_classes_path %>
