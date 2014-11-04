@@ -1,38 +1,35 @@
-<p id="notice"><%= notice %></p>
+<body>
+  <p id="notice"><%= notice %></p>
 
-<br><br>
-<p>
-  <strong>Semester name:</strong>
-  <%= @directory_semester.semester_name %>
-</p>
+  <br>
+  <ol class="breadcrumb pull-right">
+    <li class="active">
+      <%= @directory_semester.semester_name %>
+    </li>
+  </ol>
 
-<p><strong>Classes</strong>
-<% @directory_semester.directory_classes.each do |classes| %>
-	<p>
-		<b>Class name:</b>
-		<%= classes.class_name %>
-		<td><%= link_to 'Show', directory_class_path(classes) %></td>
-		<td><%= link_to 'Edit', edit_directory_class_path(classes) %></td>
-		<td><%= link_to 'Destroy', classes, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-	</p>
+  <h2>Classes</h2>
+  <table class="table table-condensed">
+    <% @directory_semester.directory_classes.each do |classes| %>
+      <tr>
+ 	      <td><%= link_to classes.class_name, directory_class_path(classes) %></td>
+        <td>[<%= link_to 'Edit', edit_directory_class_path(classes) %>
+		    / <%= link_to 'Destroy', classes, method: :delete, data: { confirm: 'Are you sure?' } %>]</td>
+      </tr>
+    <% end %>
+  </table>
 
-<% end %>
+  
 
+  <br><br><br>
 
-<!-- where I want to add class in this category...-->
-<h2> Add a class:</h2>
-
-<%= form_for([@directory_semester, @directory_semester.directory_classes.build]) do |f| %>
-  <p>
-    <%= f.label :class_name %><br>
-    <%= f.text_field :class_name %>
-  </p>
-  <p>
-    <%= f.submit %>
-  </p>
-<% end %>
-
-
-
-<%= link_to 'Edit', edit_directory_semester_path(@directory_semester) %> |
-<%= link_to 'Back', directory_semesters_path %>
+  <div class="well well-sm pull-right">
+    <%= form_for([@directory_semester, @directory_semester.directory_classes.build]) do |f| %>
+      <p>
+        <%= f.label '과목 이름' %><br>
+        <%= f.text_field :class_name %>
+       <%= f.submit 'NEW', :class => 'btn btn-info' %>
+     </p>
+    <% end %>
+  </div>
+<body>
