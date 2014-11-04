@@ -1,0 +1,27 @@
+<h1>Listing directory_classes</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Class name</th>
+      <th>Directory semester</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @directory_classes.each do |directory_class| %>
+      <tr>
+        <td><%= directory_class.class_name %></td>
+        <td><%= directory_class.directory_semester %></td>
+        <td><%= link_to 'Show', directory_class %></td>
+        <td><%= link_to 'Edit', edit_directory_class_path(directory_class) %></td>
+        <td><%= link_to 'Destroy', directory_class, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Directory class', new_directory_class_path %>

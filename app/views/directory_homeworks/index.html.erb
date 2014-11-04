@@ -1,0 +1,27 @@
+<h1>Listing directory_homeworks</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Class name</th>
+      <th>Directory class</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @directory_homeworks.each do |directory_homework| %>
+      <tr>
+        <td><%= directory_homework.class_name %></td>
+        <td><%= directory_homework.directory_class %></td>
+        <td><%= link_to 'Show', directory_homework %></td>
+        <td><%= link_to 'Edit', edit_directory_homework_path(directory_homework) %></td>
+        <td><%= link_to 'Destroy', directory_homework, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Directory homework', new_directory_homework_path %>

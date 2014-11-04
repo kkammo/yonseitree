@@ -1,0 +1,25 @@
+<%= form_for(@directory_homework) do |f| %>
+  <% if @directory_homework.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@directory_homework.errors.count, "error") %> prohibited this directory_homework from being saved:</h2>
+
+      <ul>
+      <% @directory_homework.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :class_name %><br>
+    <%= f.text_field :class_name %>
+  </div>
+  <div class="field">
+    <%= f.label :directory_class_id %><br>
+    <%= f.text_field :directory_class_id %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

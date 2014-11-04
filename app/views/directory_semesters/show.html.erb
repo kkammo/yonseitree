@@ -1,0 +1,21 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Semester name:</strong>
+  <%= @directory_semester.semester_name %>
+</p>
+
+<p><strong>Classes name:</strong>
+<% @directory_semester.directory_classes.each do |classes| %>
+	<p>
+		<b>Class name:</b>
+		<%= classes.class_name %>
+	</p>
+<% end %>
+
+<h2> Add a class:</h2>
+
+
+
+<%= link_to 'Edit', edit_directory_semester_path(@directory_semester) %> |
+<%= link_to 'Back', directory_semesters_path %>

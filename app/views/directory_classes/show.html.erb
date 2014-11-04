@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Class name:</strong>
+  <%= @directory_class.class_name %>
+</p>
+
+<p>
+  <strong>Directory semester:</strong>
+  <%= @directory_class.directory_semester %>
+</p>
+
+<%= link_to 'Edit', edit_directory_class_path(@directory_class) %> |
+<%= link_to 'Back', directory_classes_path %>

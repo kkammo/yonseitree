@@ -1,0 +1,21 @@
+<%= form_for(@directory_semester) do |f| %>
+  <% if @directory_semester.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@directory_semester.errors.count, "error") %> prohibited this directory_semester from being saved:</h2>
+
+      <ul>
+      <% @directory_semester.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :semester_name %><br>
+    <%= f.text_field :semester_name %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
