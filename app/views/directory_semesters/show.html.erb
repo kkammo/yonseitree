@@ -11,7 +11,9 @@
 	<p>
 		<b>Class name:</b>
 		<%= classes.class_name %>
-		<%= link_to 'Show', directory_class_path(classes) %>
+		<td><%= link_to 'Show', directory_class_path(classes) %></td>
+		<td><%= link_to 'Edit', edit_directory_class_path(classes) %></td>
+		<td><%= link_to 'Destroy', classes, method: :delete, data: { confirm: 'Are you sure?' } %></td>
 	</p>
 
 <% end %>

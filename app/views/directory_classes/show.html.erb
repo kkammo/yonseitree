@@ -11,7 +11,9 @@
 	<p>
 		<b>homework name:</b>
 		<%= homeworks.class_name %>	<!-- my mistake class_name....-->
-		<%= link_to 'Show', directory_homework_path(homeworks) %>
+		<td><%= link_to 'Show', directory_homework_path(homeworks) %></td>
+		<td><%= link_to 'Edit', edit_directory_homework_path(homeworks) %></td>
+		<td><%= link_to 'Destroy', homeworks, method: :delete, data: { confirm: 'Are you sure?' } %></td>
 	</p>
 
 <% end %>

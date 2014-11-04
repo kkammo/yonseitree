@@ -60,7 +60,7 @@ class DirectoryClassesController < ApplicationController
     @directory_class.destroy
     respond_to do |format|
       if @directory_class.destroy
-        format.html { redirect_to directory_classes_path, notices: "Directory destroyed"}
+        format.html { redirect_to directory_class_path(@directory_class), notices: "Directory destroyed"}
       else
         format.html{ render action: "new"}
       end

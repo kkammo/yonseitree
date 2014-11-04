@@ -49,6 +49,13 @@ class DirectoryHomeworksController < ApplicationController
 
   def destroy
     @directory_homework.destroy
+    respond_to do |format|
+      if @directory_homework.destroy
+        format.html { redirect_to directory_homework_path(@directory_homework), notices: "Directory destroyed"}
+      else
+        format.html{ render action: "new"}
+      end
+    end
     #respond_with(@directory_homework)
   end
 
