@@ -8,7 +8,9 @@ class DirectoryHomeworksController < ApplicationController
   def show
     @directory_homework = DirectoryHomework.find(params[:id])
 
-    directory_homework_path(@directory_homework)
+    @projects = @directory_homework.projects
+    redirect_to projects_path(@projects)
+    #directory_homework_path(@directory_homework)
     #respond_with(@directory_homework)
   end
 

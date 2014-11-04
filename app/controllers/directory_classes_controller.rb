@@ -33,6 +33,7 @@ class DirectoryClassesController < ApplicationController
   end
 
   def create
+
     @directory_class = DirectoryClass.new(directory_class_params)
     respond_to do |format|
       if @directory_class.save
