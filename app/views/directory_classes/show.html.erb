@@ -1,5 +1,7 @@
 <p id="notice"><%= notice %></p>
 <br><br>
+
+<!--
 <p>
   <strong>Class name:</strong>
   <%= @directory_class.class_name %>
@@ -10,7 +12,7 @@
 <% @directory_class.directory_homeworks.each do |homeworks| %>
 	<p>
 		<b>homework name:</b>
-		<%= homeworks.class_name %>	<!-- my mistake class_name....-->
+		<%= homeworks.class_name %>	
 		<td><%= link_to 'Show', directory_homework_path(homeworks) %></td>
 		<td><%= link_to 'Edit', edit_directory_homework_path(homeworks) %></td>
 		<td><%= link_to 'Destroy', homeworks, method: :delete, data: { confirm: 'Are you sure?' } %></td>
@@ -18,19 +20,37 @@
 
 <% end %>
 
+-->
 
-<!-- where I want to add class in this category...-->
-<h2> Add a homework:</h2>
+<ol class="breadcrumb pull-right">
+    <li class="active">
+      <%= @directory_class.class_name %>
+    </li>
+  </ol>
 
-<%= form_for([@directory_class, @directory_class.directory_homeworks.build]) do |f| %>
-  <p>
-    <%= f.label :class_name %><br>
-    <%= f.text_field :class_name %>
-  </p>
-  <p>
-    <%= f.submit %>
-  </p>
-<% end %>
+  <h2>Homeworks</h2>
+  <table class="table table-condensed">
+    <% @directory_class.directory_homeworks.each do |homeworks| %>
+      <tr>
+        <td><%= link_to homeworks.class_name, directory_homework_path(homeworks) %></td>
+        <td>[<%= link_to 'Edit', edit_directory_homework_path(homeworks) %>
+        / <%= link_to 'Destroy', homeworks, method: :delete, data: { confirm: 'Are you sure?' } %>]</td>
+      </tr>
+    <% end %>
+  </table>
+
+  <br><br><br>
+
+  <div class="well well-sm pull-right">
+    <%= form_for([@directory_class, @directory_class.directory_homeworks.build]) do |f| %>
+      <p>
+        <%= f.label 'Homework Name' %><br>
+        <%= f.text_field :class_name %>
+       <%= f.submit 'NEW', :class => 'btn btn-info' %>
+     </p>
+    <% end %>
+  </div>
+
 
 <%= link_to 'Edit', edit_directory_class_path(@directory_class) %> |
 <%= link_to 'Back', directory_classes_path %>

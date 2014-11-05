@@ -35,7 +35,7 @@ class DirectoryHomeworksController < ApplicationController
     #@directory_class = DirectoryClass.new(directory_class_params)
     respond_to do |format|
       if @directory_homework.save
-        format.html { redirect_to directory_homework_path(@directory_homework), notice: 'Directory created'}
+        format.html { redirect_to directory_class_path(@directory_class), notice: 'Directory created'}
       else
         format.html{ render action: "new"}  
       end

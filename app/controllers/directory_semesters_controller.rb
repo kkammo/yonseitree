@@ -7,16 +7,6 @@ class DirectorySemestersController < ApplicationController
 
   def show
     @directory_semester = DirectorySemester.find(params[:id])
-#   redirect_to directory_semester_path(@directory_semester)
-
-    #@directory_classes = @directory_semester.directory_classes
-
-    #redirect_to directory_classes_path(@directory_classes)
-
-    #respond_to do |format|
-    #  format.html
-    #  format.xml { render :xml => @directory_semester }
-    #end
   end
 
   def new
