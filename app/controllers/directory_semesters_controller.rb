@@ -26,7 +26,7 @@ class DirectorySemestersController < ApplicationController
     @directory_semester = DirectorySemester.new(directory_semester_params)
     respond_to do |format|
       if @directory_semester.save
-        format.html { redirect_to directory_semester_path(@directory_semester), notice: 'Directory created'}
+        format.html { redirect_to directory_semesters_path, notice: 'Directory created'}
       else
         format.html{ render action: "new"}
       end

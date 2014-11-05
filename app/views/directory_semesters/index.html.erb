@@ -1,25 +1,28 @@
-<h1>Semesters</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th>Semester name</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
 
-  <tbody>
-    <% @directory_semesters.each do |directory_semester| %>
+  <h2>Semesters</h2>
+  <table class="table table-condensed">
+    <% @directory_semesters.each do |semesters| %>
       <tr>
-        <td><%= directory_semester.semester_name %></td>
-        <td><%= link_to 'Show', directory_semester %></td>
-        <td><%= link_to 'Edit', edit_directory_semester_path(directory_semester) %></td>
-        <td><%= link_to 'Destroy', directory_semester, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to semesters.semester_name, directory_semester_path(semesters) %></td>
+        <td>[<%= link_to 'Edit', edit_directory_semester_path(semesters) %>
+        / <%= link_to 'Destroy', semesters, method: :delete, data: { confirm: 'Are you sure?' } %>]</td>
       </tr>
     <% end %>
-  </tbody>
-</table>
+  </table>
+
+  <br><br><br>
+
+
+  
+  <div class="well well-sm pull-right">
+    <%= form_for :directory_semester do |f| %>
+      <p>
+        <%= f.label '학기이름' %><br>
+        <%= f.text_field :semester_name %>
+        <%= f.submit 'NEW', :class=> 'btn btn-info'%>
+      </p>
+    <% end %>
+  </div>
 
 <br>
-
-<%= link_to 'New Directory semester', new_directory_semester_path %>
