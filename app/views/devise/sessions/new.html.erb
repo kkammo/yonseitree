@@ -1,26 +1,41 @@
-<h2>Log in</h2>
+<br>
 
-<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div class="field">
-    <p><%= f.label :login %><br />
-    <%= f.text_field :login %></p>
+<div class="row" style="background-color: white">
+  <div class="col-md-6">
+    <%= image_tag 'yt_simbol.png', :size => "300x300" %>
   </div>
 
-  <div class="field">
-    <%= f.label :password %><br />
-    <%= f.password_field :password, autocomplete: "off" %>
-  </div>
+  <div class="col-md-6">
+    <br><br>
+    <div class="row" style="background-color: white">
+      <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+      <div class="col-md-6">
+        <br><br><br>
+        <div class="field">
+          <input id="user_login" name="user[login]" type="text" class="form-control" placeholder="학번" />
+        </div>
+        <p></p>
+        <div class="field">
+          <input autocomplete="off" id="user_password" name="user[password]" type="password" class="form-control" placeholder="비밀번호" />
+        </div>
+        <p></p>
+<!--         <% if devise_mapping.rememberable? -%>
+          <div class="field">
+            <%= f.check_box :remember_me %>
+            <%= f.label :remember_me %>
+          </div>
+        <% end -%>
+ -->    </div>
 
-  <% if devise_mapping.rememberable? -%>
-    <div class="field">
-      <%= f.check_box :remember_me %>
-      <%= f.label :remember_me %>
+    <div class="col-md-6">
+      <br><br><br><p></p>
+      <input class="btn btn-info btn-lg" name="commit" type="submit" value="로그인" style="font-size: 30px" />
+    </div>  
+    <% end %>
+  </div>
+  
+    <div>
+      <li><%= render "devise/shared/links" %></li>
     </div>
-  <% end -%>
-
-  <div class="actions">
-    <%= f.submit "Log in" %>
   </div>
-<% end %>
-
-<%= render "devise/shared/links" %>
+</div>

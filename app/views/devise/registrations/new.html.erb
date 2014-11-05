@@ -1,34 +1,64 @@
-<h2>Sign up</h2>
+<br>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= devise_error_messages! %>
-
-  <div class="field">
-    <p><%= f.label :student_id %><br />
-    <%= f.text_field :student_id %></p>
+<div class="row" style="background-color: white">
+  <div class="col-md-6">
+    <%= image_tag 'yt_simbol.png', :size => "300x300" %>
   </div>
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true %>
-  </div>
+  <div class="col-md-6">
+    <%= form_for(resource, as: resource_name, url: registration_path(resource_name), :html => {:class => 'form-horizontal',  :role => "form"}) do |f| %>
+      <%= devise_error_messages! %>
+      <br><br>
+      <div class="form-group">
+        <label for="user_student_id" class="col-lg-3 control-label">
+          <p>학번</p>
+        </label>
+        <div class="col-lg-8">
+          <input id="user_student_id" name="user[student_id]" type="text" class="form-control" placeholder="학번" />
+        </div>
+      </div>
 
-  <div class="field">
-    <%= f.label :password %>
-    <% if @validatable %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "off" %>
-  </div>
+      <div class="form-group">
+        <label for="user_name" class="col-lg-3 control-label">
+          <p>이름</p>
+        </label>
+        <div class="col-lg-8">
+          <input id="user_name" name="user[user_name]" type="text" class="form-control" placeholder="이름" />
+        </div>
+      </div>
 
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "off" %>
-  </div>
+      <div class="form-group">
+        <label for="user_email" class="col-lg-3 control-label">
+          <p>E-mail</p>
+        </label>
+        <div class="col-lg-8">
+          <input id="user_email" name="user[email]" type="email" class="form-control" placeholder="E-mail" />
+        </div>
+      </div>
 
-  <div class="actions">
-    <%= f.submit "Sign up" %>
-  </div>
-<% end %>
+      <div class="form-group">
+        <label for="user_password" class="col-lg-3 control-label">
+          <p>비밀번호</p>
+        </label>
+        <div class="col-lg-8">
+          <input autocomplete="off" id="user_password" name="user[password]" type="password" class="form-control" placeholder="비밀번호 (8 글자 이상)" />
+        </div>
+      </div>
 
-<%= render "devise/shared/links" %>
+      <div class="form-group">
+        <label for="user_password_confirmation" class="col-lg-3 control-label">
+          <p>비밀번호 확인</p>
+        </label>
+        <div class="col-lg-8">
+          <input autocomplete="off" id="user_password_confirmation" name="user[password_confirmation]" type="password" class="form-control" placeholder="비밀번호 확인"/>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class="col-lg-offset-2 col-lg-10">
+          <input class="btn btn-info btn-lg pull-right" name="commit" type="submit" value="가입하기" style="font-size: 20px" />
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

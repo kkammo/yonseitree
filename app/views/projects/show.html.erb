@@ -7,7 +7,9 @@
 
 <p>
   <strong>Description:</strong>
-  <%= @project.description %>
+  <div class="well">
+  	<%= @project.description %>
+	</div>
 </p>
 
 <%= render html: @content.html_safe %>
