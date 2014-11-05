@@ -9,6 +9,9 @@ class ProjectsController < ApplicationController
   def show
     @project = Project.find(params[:id])
 
+    # @content = CodeRay.scan(File.read('tmp/test.cpp'), :cpp).div
+    @content = CodeRay.scan_file('tmp/test.cpp').div
+
     respond_to do |format|
       format.html
       format.xml { render :xml => @project }
