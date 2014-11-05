@@ -67,7 +67,13 @@ class DirectoryClassesController < ApplicationController
     end
   end
 
+  #def directory_semester_params
+  #  @directory_semester = DirectorySemester.find(params[:directory_semester_id)
+  #end
+
   private
+
+  
     def set_directory_class
       @directory_class = DirectoryClass.find(params[:id])
     end
