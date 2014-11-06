@@ -11,8 +11,8 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141105071444) do
 
+ActiveRecord::Schema.define(version: 20141106021256) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -76,9 +76,11 @@ ActiveRecord::Schema.define(version: 20141105071444) do
     t.datetime "updated_at"
     t.integer  "user_id"
     t.integer  "directory_homework_id"
+    t.integer  "project_id"
   end
 
   add_index "projects", ["directory_homework_id"], name: "index_projects_on_directory_homework_id", using: :btree
+  add_index "projects", ["project_id"], name: "index_projects_on_project_id", using: :btree
   add_index "projects", ["user_id"], name: "index_projects_on_user_id", using: :btree
 
   create_table "users", force: true do |t|
