@@ -19,10 +19,6 @@ class ApplicationController < ActionController::Base
     end        
   end
 
-  def search
-    @projects = Project.search(params[:search])
-  end
-
   protected
 
   def configure_permitted_parameters
