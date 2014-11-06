@@ -1,6 +1,11 @@
   <html>
   <!-- <head/> -->
   <body>
+  	  <% if flash[:sign_in] %>
+    <div class="alert alert-danger">
+      <h3 class="welcome">로그인이 필요합니다.</h3>
+    </div>
+  <% end %>
 
 <% if user_signed_in? %>
 	<h1> Welcome!</h1>
@@ -26,22 +31,36 @@
 	</table>
 
 <% else %>
-	<h1>홈 화면</h1>
+<div class="row" style="background-color: white">
+  <div class="col-md-6">
+    <%= image_tag 'yt_simbol.png', :size => "300x300" %>
+  </div>
 
-	<p> 자 이제 시작이야 (내꿈을)</p>
-	<p> 내꿈을 위한 여행 (피카츄)</p>
-	<p> 걱정따윈 없어 (없어)</p>
-	<p> 내친구랑 함께니까 (피카피카)</p>
-	<p> 처음 시작은 어색할지도 몰라 (몰라)</p>
-	<p> 내친구 피카츄</p>
-	<p> 날 지켜 줄거라고 믿고 있어 </p>
-	<p> 누구라도 얕보다간 큰일나</p>
-	<p> 언제나 어디서나 피카츄가 옆에있어 </p>
-	<p> 약할 때나 강할 때나 피카츄가 옆에있어</p>
-	<p> 너와 나 함께라면 우린최고야</p>
-	<p> 언제언제까지나 진실한 마음으로 </p>
-	<p> 언제언제 까지나그날을 위해</p>
-	<p> 피카츄</p>
+  <div class="col-md-6">
+    <br><br>
+    <div class="row" style="background-color: white">
+      <%= form_for(:user, :url => session_path(:user)) do |f| %>
+      <div class="col-md-6">
+        <br><br><br>
+        <div class="field">
+          <input id="user_login" name="user[login]" type="text" class="form-control" placeholder="학번" />
+        </div>
+        <p></p>
+        <div class="field">
+          <input autocomplete="off" id="user_password" name="user[password]" type="password" class="form-control" placeholder="비밀번호" />
+        </div>
+        <p></p>
+      </div>
+
+    <div class="col-md-6">
+      <br><br><br><p></p>
+      <input class="btn btn-info btn-lg" name="commit" type="submit" value="로그인" style="font-size: 30px" />
+    </div>  
+    <% end %>
+  </div>
+  
+  </div>
+</div>
 <% end %>
 </body>
 </html>
