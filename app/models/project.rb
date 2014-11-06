@@ -1,7 +1,8 @@
 class Project < ActiveRecord::Base
-	belongs_to :directory
-	belongs_to :user
 	belongs_to :directory_homework
+	belongs_to :user
+	has_many :comments, :dependent => :destroy
+	has_many :likes, :dependent => :destroy
 	belongs_to :project
 	has_many :projects
 	
