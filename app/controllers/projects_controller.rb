@@ -3,7 +3,7 @@ class ProjectsController < ApplicationController
   before_filter :require_user
 
   def index
-    @projects = Project.all
+    @projects = Project.order("created_at DESC")
   end
 
   def show
@@ -62,6 +62,14 @@ class ProjectsController < ApplicationController
         format.html { render action: "new" }
       end
     end
+  end
+
+  def search
+    if params[:search].length > 0
+      @projects = Project.search(params[:search])
+    else
+      @projects = nil
+    end 
   end
 
   private
