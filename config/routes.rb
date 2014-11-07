@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   resources :projects do
     get 'search', on: :collection
     resources :comments
+    resources :likes
   end
 
   resources :directory_semesters do
