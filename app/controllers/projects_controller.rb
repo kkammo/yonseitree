@@ -47,7 +47,7 @@ class ProjectsController < ApplicationController
     @project.update(project_params)
     respond_to do |format|
       if @directory.save
-        format.html { redirect_to directory_path(@directory), notice: 'Project edited'}
+        format.html { redirect_to project_path(@project), notice: 'Project edited'}
       else
         format.html { render action: "new" }
       end
@@ -57,7 +57,7 @@ class ProjectsController < ApplicationController
   def destroy
     respond_to do |format|
       if @project.destroy
-        format.html { redirect_to directories_path, notice: 'Project destroyed'}
+        format.html { redirect_to projects_path, notice: 'Project destroyed'}
       else
         format.html { render action: "new" }
       end
