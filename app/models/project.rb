@@ -7,8 +7,7 @@ class Project < ActiveRecord::Base
 	has_many :projects
 	
 	def self.search(query)
-    # where(:title, query) -> This would return an exact match of the query
-    where("project_name like ?", "%#{query}%")
-  end
-	
+	    # where(:title, query) -> This would return an exact match of the query
+	    where("project_name like ?", "%#{query}%")
+	end
 end
