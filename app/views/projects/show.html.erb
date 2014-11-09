@@ -14,5 +14,5 @@
 
 <%= render html: @content.html_safe %>
 
-<%= link_to 'Edit', edit_project_path(@project) %> |
-<%= link_to 'Back', projects_path %>
+<%= link_to 'Edit', edit_directory_homework_project_path(@directory_homework, @project) %> |
+<%= link_to 'Back', directory_homework_projects_path(@directory_homework) %>

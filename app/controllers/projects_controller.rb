@@ -1,13 +1,13 @@
 class ProjectsController < ApplicationController
   before_action :set_project, only: [:show, :edit, :update, :destroy]
-  before_filter :require_user
+  before_filter :require_user, :load_directory_homework
 
   def index
-    @projects = Project.order("created_at DESC")
+    @projects = @directory_homework.projects.all
   end
 
   def show
-    @project = Project.find(params[:id])
+    @project = @directory_homework.projects.find(params[:id])
 
     # @content = CodeRay.scan(File.read('tmp/test.cpp'), :cpp).div
     @content = CodeRay.scan_file('tmp/test.cpp').div
@@ -19,7 +19,8 @@ class ProjectsController < ApplicationController
   end
 
   def new
-    @project = Project.new
+    #@project = Project.new
+    @project = @directory_homework.projects.new
   end
 
   def edit
@@ -32,11 +33,13 @@ class ProjectsController < ApplicationController
   end
 
   def create
-    @project = Project.new(project_params)
+    #@project = Project.new(project_params)
+
+    @project = @directory_homework.projects.new(project_params)
 
     respond_to do |format|
       if @project.save
-        format.html { redirect_to project_path(@project), notice: 'Project created'}
+        format.html { redirect_to [@directory_homework, @project], notice: 'Project created'}
       else
         format.html { render action: "new" }
       end
@@ -73,6 +76,10 @@ class ProjectsController < ApplicationController
   end
 
   private
+    def load_directory_homework
+      @directory_homework = DirectoryHomework.find(params[:directory_homework_id])
+    end
+
     def set_project
       @project = Project.find(params[:id])
     end
