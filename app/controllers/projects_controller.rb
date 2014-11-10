@@ -10,7 +10,8 @@ class ProjectsController < ApplicationController
     @project = Project.find(params[:id])
 
     # @content = CodeRay.scan(File.read('tmp/test.cpp'), :cpp).div
-    @content = CodeRay.scan_file('tmp/test.cpp').div
+    # @content = CodeRay.scan_file('tmp/test.cpp').div
+    @content = CodeRay.scan_file(RAILS_ROOT/tmp/test.cpp).div
 
     respond_to do |format|
       format.html
