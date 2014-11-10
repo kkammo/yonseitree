@@ -11,7 +11,17 @@ class ProjectsController < ApplicationController
 
     # @content = CodeRay.scan(File.read('tmp/test.cpp'), :cpp).div
     # @content = CodeRay.scan_file('tmp/test.cpp').div
-    @content = CodeRay.scan_file(RAILS_ROOT/tmp/test.cpp).div
+    # @content = CodeRay.scan_file(RAILS_ROOT/tmp/test.cpp).div
+    @content = CodeRay.scan('#include <iostream>
+
+using namespace std;
+
+void main() {
+  int i(0);
+
+  cout<<i<<endl;
+  return;
+}', :cpp).div
 
     respond_to do |format|
       format.html
