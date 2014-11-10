@@ -24,7 +24,8 @@ class ProjectsController < ApplicationController
   end
 
   def edit
-    @project = Project.find(params[:id])
+    @project = @directory_homework.projects.find(params[:id])
+    #@project = Project.find(params[:id])
 
     respond_to do |format|
       format.html
@@ -48,9 +49,10 @@ class ProjectsController < ApplicationController
 
   def update
     @project.update(project_params)
+
     respond_to do |format|
-      if @directory.save
-        format.html { redirect_to directory_path(@directory), notice: 'Project edited'}
+      if @project.save
+        format.html { redirect_to directory_homework_projects_path(@directory_homework), notice: 'Project edited'}
       else
         format.html { render action: "new" }
       end
@@ -60,7 +62,7 @@ class ProjectsController < ApplicationController
   def destroy
     respond_to do |format|
       if @project.destroy
-        format.html { redirect_to directories_path, notice: 'Project destroyed'}
+        format.html { redirect_to directory_homework_projects_path(@directory_homework), notice: 'Project destroyed'}
       else
         format.html { render action: "new" }
       end

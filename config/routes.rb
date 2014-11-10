@@ -11,7 +11,11 @@ Rails.application.routes.draw do
   end
 
   resources :directory_semesters do
-    resources :directory_classes
+    resources :directory_classes do
+      resources :directory_homeworks do
+        resources :projects
+      end
+    end
   end
 
   resources :directory_classes do

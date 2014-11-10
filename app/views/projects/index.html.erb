@@ -1,26 +1,23 @@
-<h1>Listing projects</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th>Project name</th>
-      <th>Description</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
 
-  <tbody>
+<ol class="breadcrumb pull-right">
+    <li class="active">
+      <%= @directory_homework.class_name %>
+    </li>
+</ol>
+
+<h2>Projects</h2>
+  <table class="table table-condensed">
     <% @projects.each do |project| %>
       <tr>
-        <td><%= project.project_name %></td>
-        <td><%= project.description %></td>
-        <td><%= link_to 'Show', project %></td>
-        <td><%= link_to 'Edit', edit_project_path(project) %></td>
-        <td><%= link_to 'Destroy', project, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to project.project_name, directory_homework_project_path(@directory_homework, project) %></td>
+        <td>[<%= link_to 'Edit', edit_directory_homework_project_path(@directory_homework, project) %>
+        / <%= link_to 'Destroy', directory_homework_project_path(@directory_homework, project), method: :delete, data: { confirm: 'Are you sure?' } %>]</td>
       </tr>
     <% end %>
-  </tbody>
-</table>
+  </table>
+
+
 
 <br>
 
