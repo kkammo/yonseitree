@@ -16,6 +16,19 @@ class ProjectsController < ApplicationController
     @content = CodeRay.scan_file('tmp/test.cpp').div
   end
 
+  def project_destroy
+    @project = Project.find(params[:project_id])
+    @project.destroy
+
+    redirect_to projectall_projects_path
+  end
+
+  def project_edit
+    @project = Project.find(params[:project_id])
+  end
+
+  #all of above function is for without directory homework version...
+
   def show
     load_directory_homework
     @project = @directory_homework.projects.find(params[:id])
@@ -64,12 +77,17 @@ class ProjectsController < ApplicationController
   def update
     @project.update(project_params)
 
-    respond_to do |format|
-      if @project.save
-        format.html { redirect_to directory_homework_projects_path(@directory_homework), notice: 'Project edited'}
+    
+      #if @project.save
+      #  format.html { redirect_to directory_homework_projects_path(@directory_homework), notice: 'Project edited'}
+      #else
+      #  format.html { render action: "new" }
+
+      if @directory_homework #if it is in directory_homework
+        redirect_to directory_homework_projects_path(@directory_homework)
       else
-        format.html { render action: "new" }
-      end
+        redirect_to project_project_show_path(@project)
+      
     end
   end
 
