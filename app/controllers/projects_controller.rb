@@ -13,6 +13,7 @@ class ProjectsController < ApplicationController
 
   def project_show
     @project = Project.find(params[:project_id])
+    @content = CodeRay.scan_file('tmp/test.cpp').div
   end
 
   def show
