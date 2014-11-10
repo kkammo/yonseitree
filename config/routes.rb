@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   resources :projects do
     get 'search', on: :collection
     get "projectall", on: :collection
+    get "project_show"
     resources :comments
     resources :likes
   end

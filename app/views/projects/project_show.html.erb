@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Project name:</strong>
+  <%= @project.project_name %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <div class="well">
+  	<%= @project.description %>
+	</div>
+</p>
+
+<%= render html: @content.html_safe %>
+
+<h2>Comments</h2>
+<%= render @project.comments %>
+
+<p>
+	<strong>Count: </strong>
+	<%= @project.likes.count %>
+</p> 
+<h2>Add a comment:</h2>
+<%= render "comments/form" %>
+
+
+	<%= link_to 'Destroy Like'%>
+
+	<%= link_to 'Like', {:controller => "likes",
+		     :action => "create",
+		     :project_id => @project.id,
+		     :user_id => current_user.id},
+		     :method => "post" %>
+
+
+
+<%= link_to 'Edit', edit_project_path(@project) %> |
+<%= link_to 'Back', projects_path %>

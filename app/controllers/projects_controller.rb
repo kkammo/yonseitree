@@ -11,6 +11,10 @@ class ProjectsController < ApplicationController
     @projects = Project.all
   end
 
+  def project_show
+    @project = Project.find(params[:project_id])
+  end
+
   def show
     load_directory_homework
     @project = @directory_homework.projects.find(params[:id])

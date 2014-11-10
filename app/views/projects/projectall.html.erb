@@ -2,7 +2,7 @@
   <table class="table table-condensed">
     <% @projects.each do |project| %>
       <tr>
-        <td><%= link_to project.project_name, project_path(project) %></td>
+        <td><%= link_to project.project_name, project_project_show_path(project) %></td>
       </tr>
     <% end %>
   </table>
