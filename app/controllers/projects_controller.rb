@@ -1,12 +1,18 @@
 class ProjectsController < ApplicationController
   before_action :set_project, only: [:show, :edit, :update, :destroy]
-  before_filter :require_user, :load_directory_homework
+  before_filter :require_user#, :
 
   def index
+    load_directory_homework
     @projects = @directory_homework.projects.all
   end
 
+  def projectall
+    @projects = Project.all
+  end
+
   def show
+    load_directory_homework
     @project = @directory_homework.projects.find(params[:id])
 
     # @content = CodeRay.scan(File.read('tmp/test.cpp'), :cpp).div
@@ -19,11 +25,13 @@ class ProjectsController < ApplicationController
   end
 
   def new
+    load_directory_homework
     #@project = Project.new
     @project = @directory_homework.projects.new
   end
 
   def edit
+    load_directory_homework
     @project = @directory_homework.projects.find(params[:id])
     #@project = Project.find(params[:id])
 
@@ -35,6 +43,7 @@ class ProjectsController < ApplicationController
 
   def create
     #@project = Project.new(project_params)
+    load_directory_homework
 
     @project = @directory_homework.projects.new(project_params)
 
@@ -60,6 +69,7 @@ class ProjectsController < ApplicationController
   end
 
   def destroy
+    load_directory_homework
     respond_to do |format|
       if @project.destroy
         format.html { redirect_to directory_homework_projects_path(@directory_homework), notice: 'Project destroyed'}

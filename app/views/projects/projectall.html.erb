@@ -1,0 +1,8 @@
+<h2>Projects</h2>
+  <table class="table table-condensed">
+    <% @projects.each do |project| %>
+      <tr>
+        <td><%= link_to project.project_name, project_path(project) %></td>
+      </tr>
+    <% end %>
+  </table>
