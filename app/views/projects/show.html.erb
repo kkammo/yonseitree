@@ -14,5 +14,26 @@
 
 <%= render html: @content.html_safe %>
 
-<%= link_to 'Edit', edit_directory_homework_project_path(@directory_homework, @project) %> |
-<%= link_to 'Back', directory_homework_projects_path(@directory_homework) %>
+<h2>Comments</h2>
+<%= render @project.comments %>
+
+<p>
+	<strong>Count: </strong>
+	<%= @project.likes.count %>
+</p> 
+<h2>Add a comment:</h2>
+<%= render "comments/form" %>
+
+
+	<%= link_to 'Destroy Like'%>
+
+	<%= link_to 'Like', {:controller => "likes",
+		     :action => "create",
+		     :project_id => @project.id,
+		     :user_id => current_user.id},
+		     :method => "post" %>
+
+
+
+<%= link_to 'Edit', edit_project_path(@project) %> |
+<%= link_to 'Back', projects_path %>
