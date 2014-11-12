@@ -3,8 +3,8 @@ class CommentsController < ApplicationController
   def create
     @project = Project.find(params[:project_id])
     @user = current_user
-   @comment = @project.comments.create(comment_params)
-   redirect_to project_path(@project)
+    @comment = @project.comments.create(body: comment_params[:body], user_id: current_user.id)
+    redirect_to project_path(@project)
   end
 
   def destroy
@@ -16,7 +16,9 @@ class CommentsController < ApplicationController
 
 private
     def comment_params
-      params.require(:comment).permit(:commenter, :body)
+
+      params.require(:comment).permit(:body)
+      #user_id 어떻
     end
 
 end
