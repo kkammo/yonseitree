@@ -3,7 +3,7 @@ class CommentsController < ApplicationController
   def create
     @project = Project.find(params[:project_id])
     @user = current_user
-    @comment = @project.comments.create(body: comment_params[:body], user_id: current_user.id)
+    @comment = @project.comments.create(body: comment_params[:body], user_id: current_user.id, commenter: current_user.user_name)
     redirect_to project_path(@project)
   end
 
