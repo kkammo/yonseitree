@@ -19,10 +19,10 @@
 	<%= @project.likes.count %>
 </p> 
 
-<h2>Comments</h2>
+<h2>댓글</h2>
 <%= render @project.comments %>
 
-<h2>Add a comment:</h2>
+<h2>댓글 달기</h2>
 <%= render "comments/form" %>
 
 
@@ -37,7 +37,7 @@
 	<%= link_to 'Like', {:controller => "likes",
 		     :action => "create",
 		     :project_id => @project.id,
-		     :user_id => current_user.id},
+		     :user_id => current_user.id},\
 		     :method => "post" %>
 <% end %>
 <!-- 라이크 누르면 화면 뒤로갈때 라이크 누르기전 되는 이유 -->
