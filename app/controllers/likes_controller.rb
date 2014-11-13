@@ -8,20 +8,17 @@ class LikesController < ApplicationController
   end
 
   def destroy
-
-
-    Like.find(params[project_id: @project.id, user_id: @user.id]).destroy
-
-    redirect_to project_path(@project)
+    @project = Project.find(params[:project_id])
+    @user = current_user
+    Like.find_by(project_id: @project.id, user_id: @user.id).destroy
+    redirect_to project_path(@project.id)
   end
+
  
   def new
     @like = Like.new()
   end
 
-  def findlike
-    Like.find(parmas[:project_id, :user_id])
-  end
 private
     def like_params
       params.require(:like)
