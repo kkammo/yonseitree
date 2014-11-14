@@ -57,6 +57,7 @@ ActiveRecord::Schema.define(version: 20141106021256) do
     t.string   "semester_name"
     t.datetime "created_at"
     t.datetime "updated_at"
+    #TA 넣기
   end
 
   create_table "likes", force: true do |t|

@@ -1,6 +1,6 @@
 <div class="field">
-    <%= comment.user_id %><br />
-    <%= comment.body %>
+    <%= User.find(comment.user_id).user_name %><br />
+    <%= comment.body %><br />
 </div>
 
 <% if comment.user == current_user %>
