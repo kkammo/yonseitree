@@ -3,7 +3,7 @@
     <%= comment.body %><br />
 </div>
 
-<% if (DirectoryHomework.find(Project.find(comment.project_id).directory_homework_id).user_id == current_user.id) || comment.user = current_user %>
+<% if (DirectoryClass.find(DirectoryHomework.find(Project.find(comment.project_id).directory_homework_id).directory_class_id).user_id == current_user.id) || comment.user == current_user %>
 
   <%= link_to 'Destroy Comment', [comment.project, comment],
                method: :delete,
