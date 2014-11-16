@@ -33,7 +33,7 @@
 
         </label>
         <div class="col-lg-7">
-          <input id="project_name" name="project[project_name]" type="text" class="form-control" placeholder="프로젝트 이름" />
+          <input style="border-width:3px; border-style:solid; border-color:green; auto; padding:0px;" id="project_name" name="project[project_name]" type="text" class="form-control" placeholder="프로젝트 이름"/>
         </div>
       </div>
 <br>
@@ -41,12 +41,13 @@
   <div class="form-group">
         <label for="project_name" class="col-lg-3 control-label">
          
-        <font color = "green">파일이름</font>
-          
+        <font color = "green" >파일이름</font>
 
         </label>
         <div class="col-lg-7">
-          <input type="file" name = "FileName" class="form-control" />
+          <form action="" method"upload" enctype"multipart/form-data" name="">
+            <input  style="border-width:3px; border-style:solid; border-color:green; auto; padding:0px;"  type="file" name = "FileName" class="form-control" />
+          </form>
         </div>
       </div>
 
@@ -54,8 +55,8 @@
   <div class="form-group">
         
         <br>
-        <div class="col-lg-10">
-          <textarea rows = "30" cols = "15" id="description" name="project[description]" type="text_area" class="form-control" placeholder="프로젝트 설명" ></textarea>
+        <div style = "padding:10px" class="col-lg-10">
+          <textarea style="border-width:3px; border-style:solid; border-color:blue; auto; padding:10px;" rows = "30" cols = "15" id="description" name="project[description]" type="text_area" class="form-control" placeholder="프로젝트 설명" ></textarea>
         </div>
       </div>
 <br><br>
