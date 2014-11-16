@@ -1,6 +1,7 @@
 class DirectoryHomeworksController < ApplicationController
   before_action :set_directory_homework, only: [:show, :edit, :update, :destroy]
-
+  before_filter :require_permit
+  
   def index
     @directory_homeworks = DirectoryHomework.all
   end

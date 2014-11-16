@@ -21,3 +21,6 @@
 
 en:
   hello: "Hello world"
+  errors:
+    messages:
+      blank: "이(가) 입력되지 않았습니다."

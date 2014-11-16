@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
 
+  get 'admin' => 'admin#index'
+  get 'admin_permit' => 'admin#change_permit'
+
   root :to => "home#index"
 
   # devise_for :users

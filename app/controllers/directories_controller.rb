@@ -1,6 +1,6 @@
 class DirectoriesController < ApplicationController
   before_action :set_directory, only: [:show, :edit, :update, :destroy]
-  before_filter :require_user
+  before_filter :require_permit
 
   def index
     @directories = Directory.all

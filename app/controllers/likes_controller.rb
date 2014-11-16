@@ -1,5 +1,6 @@
 class LikesController < ApplicationController
-
+  before_filter :require_permit
+  
   def create
     @project = Project.find(params[:project_id])
     @user = current_user

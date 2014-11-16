@@ -1,0 +1,54 @@
+<body>
+  <div id="page-wrap" style="background-color: white">
+		<h2> Admin Page </h2>
+
+		<table class="table table-condensed table-striped">
+     	<thead>
+   	   	<tr>
+     	   	<th colspan="3">
+            학번
+     	   	</th>
+          <th colspan="3">
+            이름
+          </th>
+          <th colspan="3">
+            직책
+          </th>
+          <th colspan="3">
+            가입승인
+          </th>
+   	   	</tr>
+ 	   	</thead>
+
+  	  <tbody>
+       	<% @users.each do |user| %>	        		
+       		<tr>
+  	       	<td colspan="3">
+  	       		<%= user.student_id %>
+  	       	</td>
+            <td colspan="3">
+              <%= user.user_name %>
+            </td>
+            <td colspan="3">
+              <%= user.role %>
+            </td>
+            <td colspan="3">
+              <% if user.permit? %>
+                <h6 class="help-block">
+                  승인
+                </h6>
+              <% else %>
+                <%= form_tag admin_permit_path, :method => 'get', :role => 'chage_permit'  do %>
+                  <%= hidden_field_tag :user_id , user.id %>
+                  <button type="submit" class="btn btn-warning btn-xs">
+                    승인하기
+                  </button>
+                <% end %>
+              <% end %>
+            </td>
+      	  </tr>
+    	  <% end %>
+  	  </tbody>
+	  </table>
+  </div>
+</body>

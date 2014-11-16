@@ -6,7 +6,9 @@ class User < ActiveRecord::Base
 
   has_many :projects
 
- 	validates :student_id, presence: true, length: {maximum: 10}, uniqueness: { case_sensitive: false }, format: { with: /[0-9]*/, message: "may only contain numbers." }
+ 	validates :student_id, presence: true, length: {maximum: 10}, uniqueness: { case_sensitive: false }, format: { with: /\A[0-9]*\z/, message: "ID는 숫자만 입력할 수 있습니다." }
+
+  validates :role, presence: true, format: { with: /(\Astudent\z|\Ata\z|\Aadmin\z)/ }
 
   attr_accessor :login
 
@@ -18,5 +20,17 @@ class User < ActiveRecord::Base
     	where(conditions).first
   	end
 	end
+
+  def self.permit(user_id)
+    user = User.find(user_id)
+    
+    if user
+      user.permit = true
+      user.save
+      true
+    else
+      false
+    end
+  end
 
 end

@@ -1,4 +1,5 @@
 class CommentsController < ApplicationController
+  before_filter :require_permit
 
   def create
     @project = Project.find(params[:project_id])

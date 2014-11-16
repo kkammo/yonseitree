@@ -1,6 +1,6 @@
 class ProjectsController < ApplicationController
   before_action :set_project, only: [:show, :edit, :update, :destroy]
-  before_filter :require_user#, :
+  before_filter :require_permit
 
   def index
     load_directory_homework
