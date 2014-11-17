@@ -8,7 +8,7 @@ class SemestersController < ApplicationController
   def show
     @semester = Semester.find(params[:id])
 
-    redirect_to semester_subjects_path(@semester.subjects)
+    redirect_to semester_subjects_path(@semester.subjects.first)
   end
 
   def new

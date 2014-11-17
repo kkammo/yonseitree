@@ -8,7 +8,7 @@ class SubjectsController < ApplicationController
   def show
     @subject = Subject.find(params[:id])
 
-    redirect_to subject_homeworks_path(@subject.homeworks)
+    redirect_to subject_homeworks_path(@subject.homeworks.first)
   end
 
   def new

@@ -2,7 +2,7 @@ class CreateProjects < ActiveRecord::Migration
   def up
     create_table :projects do |t|
       t.string :name
-      t.text :description
+      t.text :decription
       t.references :homework, index: true
 
       t.timestamps

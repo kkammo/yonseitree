@@ -8,7 +8,7 @@ class HomeworksController < ApplicationController
   def show
     @homework = Homework.find(params[:id])
 
-    redirect_to homework_projects_path(@homework.projects)
+    redirect_to homework_projects_path(@homework)
   end
 
   def new
