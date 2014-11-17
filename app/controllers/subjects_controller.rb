@@ -3,11 +3,12 @@ class SubjectsController < ApplicationController
 
   def index
     @subjects = Subject.all
-    respond_with(@subjects)
   end
 
   def show
-    respond_with(@subject)
+    @subject = Subject.find(params[:id])
+
+    redirect_to subject_homeworks_path(@subject.homeworks)
   end
 
   def new

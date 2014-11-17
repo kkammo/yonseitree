@@ -3,11 +3,12 @@ class HomeworksController < ApplicationController
 
   def index
     @homeworks = Homework.all
-    respond_with(@homeworks)
   end
 
   def show
-    respond_with(@homework)
+    @homework = Homework.find(params[:id])
+
+    redirect_to homework_projects_path(@homework.projects)
   end
 
   def new

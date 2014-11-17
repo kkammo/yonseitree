@@ -12,8 +12,8 @@
   <tbody>
     <% @homeworks.each do |homework| %>
       <tr>
+        <td><%= homework.subject.name %></td>
         <td><%= homework.name %></td>
-        <td><%= homework.subject %></td>
         <td><%= link_to 'Show', homework %></td>
         <td><%= link_to 'Edit', edit_homework_path(homework) %></td>
         <td><%= link_to 'Destroy', homework, method: :delete, data: { confirm: 'Are you sure?' } %></td>

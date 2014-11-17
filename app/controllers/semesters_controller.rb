@@ -3,11 +3,12 @@ class SemestersController < ApplicationController
 
   def index
     @semesters = Semester.all
-    respond_with(@semesters)
   end
 
   def show
-    respond_with(@semester)
+    @semester = Semester.find(params[:id])
+
+    redirect_to semester_subjects_path(@semester.subjects)
   end
 
   def new

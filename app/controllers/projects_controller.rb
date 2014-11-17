@@ -3,16 +3,19 @@ class ProjectsController < ApplicationController
 
   def index
     @projects = Project.all
-    respond_with(@projects)
   end
 
   def show
-    respond_with(@project)
+    @project = Project.find(params[:id])
   end
 
   def new
     @project = Project.new
-    respond_with(@project)
+
+    respond_to do |format|
+      format.html # new.html.erb
+      format.xml  { render :xml => @project }
+    end
   end
 
   def edit
