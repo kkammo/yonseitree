@@ -5,14 +5,14 @@ class CommentsController < ApplicationController
     @project = Project.find(params[:project_id])
     @user = current_user
     @comment = @project.comments.create(body: comment_params[:body], user_id: current_user.id, commenter: current_user.user_name)
-    redirect_to project_path(@project)
+    redirect_to :back
   end
 
   def destroy
     @project = Project.find(params[:project_id])
     @comment = @project.comments.find(params[:id])
     @comment.destroy
-    redirect_to project_path(@project)
+    redirect_to :back
   end
 
 private

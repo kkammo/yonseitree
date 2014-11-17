@@ -26,7 +26,7 @@
 <%= render "comments/form" %>
 
 
-<% if(@project.likes.exists?(user_id: current_user.id, project_id: @project.id)) %>
+<% if((@project.likes.exists?(user_id: current_user.id, project_id: @project.id))) %>
 	<%= link_to 'Destroy Like', {:controller => "likes",              
                :action => "destroy",
                :project_id => @project.id,

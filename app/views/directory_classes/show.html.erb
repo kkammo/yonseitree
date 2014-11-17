@@ -40,6 +40,7 @@
 
   <br><br><br>
 
+<% if @directory_class.user_id == current_user.id %>
   <div class="well well-sm pull-right">
     <%= form_for([@directory_class, @directory_class.directory_homeworks.build]) do |f| %>
       <p>
@@ -49,6 +50,7 @@
      </p>
     <% end %>
   </div>
+<% end %>
 
 
 <%= link_to 'Edit', edit_directory_class_path(@directory_class) %> |
