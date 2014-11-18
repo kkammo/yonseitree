@@ -18,19 +18,19 @@
   </div>
   
   <div class="collapse navbar-collapse navbar-ex1-collapse">
-    <ul class="nav navbar-nav">
+    <!-- <ul class="nav navbar-nav">
       <li class="active"> <%= link_to "Directory", directory_semesters_path %> </li>
       <li> <%= link_to "Project", projectall_projects_path %> </li>
-    </ul>
+    </ul> -->
 
-    <%= form_tag search_projects_path, :method => 'get', :class => 'navbar-form navbar-left', :role => 'search' do %>
+    <%= form_tag search_projects_path, :method => 'get', :class => 'navbar-form navbar-right', :style => 'padding-right: 50px', :role => 'search' do %>
       <div class="form-group">
         <%= text_field_tag :search, params[:search], class: 'form-control', placeholder: '프로젝트 키워드 입력' %>
       </div>
       <button type="submit" class="btn btn-default">검색</button>
     <% end %>
 
-    <ul class="nav navbar-nav navbar-right">
+    <ul class="nav navbar-nav navbar-left">
       <% if user_signed_in? %>
         <li>
           <%= link_to current_user.user_name %>
