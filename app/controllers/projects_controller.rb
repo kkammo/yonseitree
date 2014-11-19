@@ -28,7 +28,14 @@ class ProjectsController < ApplicationController
     @project = Project.find(params[:project_id])
   end
 
-  #all of above function is for without directory homework version...
+  def upper
+    @project = Project.find(params[:id])
+    if @project.parent_id.nil?
+      redirect_to directory_homework_projects_path
+    else
+      redirect_to branch_directory_homework_project_path(directory_homework_id:@project.directory_homework_id, id:@project.parent_id)
+    end
+  end
   def branch
     @project = Project.find(params[:id])
     @branches = []
