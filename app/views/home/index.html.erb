@@ -25,10 +25,16 @@
         <%= render(@projects) %>
       </table>
       </h3>
-	    <h3>
-		    Semesters
-		    <%= link_to "NEW", new_directory_semester_path, :class => 'btn btn-info pull-right' %>
-	    </h3>
+
+      <%if current_user.role == "admin" %>
+  	    <h3>
+  		    Semesters
+  		    <%= link_to "NEW", new_directory_semester_path, :class => 'btn btn-info pull-right' %>
+  	    </h3>
+      <%end%>
+
+      
+
 
 	   <table class="table table-condensed">
   	   <thead>

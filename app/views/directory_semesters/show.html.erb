@@ -20,14 +20,16 @@
 
   <br><%= link_to 'Back', directory_semesters_path %><br><br>
 
-  <div class="well well-sm pull-right">
-    <%= form_for([@directory_semester, @directory_semester.directory_classes.build]) do |f| %>
-      <p>
-        <%= f.label '과목 이름' %><br>
-        <%= f.text_field :class_name %>
-       <%= f.submit 'NEW', :class => 'btn btn-info' %>
-     </p>
-    <% end %>
-  </div>
+    <%if current_user.role == "admin" %>
+      <div class="well well-sm pull-right">
+        <%= form_for([@directory_semester, @directory_semester.directory_classes.build]) do |f| %>
+          <p>
+          <%= f.label '과목 이름' %><br>
+          <%= f.text_field :class_name %>
+         <%= f.submit 'NEW', :class => 'btn btn-info' %>
+        </p>
+        <% end %>
+      </div>
+    <% end%>
   </div>
 <body>
