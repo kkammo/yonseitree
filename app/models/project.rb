@@ -13,4 +13,12 @@ class Project < ActiveRecord::Base
 	    # where(:title, query) -> This would return an exact match of the query
 	    where("project_name like ?", "%#{query}%")
 	end
+
+	def parent_id
+		self.project_id
+	end
+
+	def isRoot
+		parent_id.nil?
+	end
 end

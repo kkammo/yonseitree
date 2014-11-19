@@ -12,7 +12,7 @@ class ProjectsController < ApplicationController
   end
 
   def project_show
-    @project = Project.find(params[:project_id])
+    @project = Project.find(params[:id])
     @content = CodeRay.scan_file('tmp/test.cpp').div
   end
 
@@ -28,6 +28,11 @@ class ProjectsController < ApplicationController
   end
 
   #all of above function is for without directory homework version...
+  def branch
+    @project = Project.find(params[:id])
+    @branches = []
+    Project.all.each { |p| @branches << p if p.parent_id == @project.id }
+  end
 
   def show
     load_directory_homework

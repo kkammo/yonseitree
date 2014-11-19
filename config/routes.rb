@@ -28,7 +28,10 @@ Rails.application.routes.draw do
   end
 
   resources :directory_homeworks do
-    resources :projects
+    resources :projects do
+      get "branch", on: :member
+      get "commit", on: :member
+    end
   end
 
   #resources :directories do

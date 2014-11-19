@@ -1,0 +1,26 @@
+<div id="page-wrap" >
+
+<ol class="breadcrumb pull-right">
+    <li class="active">
+      <%= @project.project_name %>
+    </li>
+</ol>
+
+<h2>Projects</h2>
+  <table class="table table-condensed">
+    <% @branches.each do |branch| %>
+      <tr>
+        <td><%= link_to branch.project_name, directory_homework_project_path(@project.directory_homework_id, branch) %></td>
+        <td>[<%= link_to 'Edit', edit_directory_homework_project_path(@project.directory_homework_id, branch) %>
+        / <%= link_to 'Destroy', directory_homework_project_path(@project.directory_homework_id, branch), method: :delete, data: { confirm: 'Are you sure?' } %>]</td>
+      </tr>
+    <% end %>
+  </table>
+
+
+
+<br>
+
+<%= link_to 'Commit', commit_directory_homework_project_path %>
+
+</div>
