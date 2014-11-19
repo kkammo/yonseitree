@@ -4,7 +4,8 @@ class ProjectsController < ApplicationController
 
   def index
     load_directory_homework
-    @projects = @directory_homework.projects.all
+    @projects = []
+    @directory_homework.projects.all.each { |p| @projects << p if p.parent_id.nil? }
   end
 
   def projectall
@@ -34,9 +35,15 @@ class ProjectsController < ApplicationController
     Project.all.each { |p| @branches << p if p.parent_id == @project.id }
   end
 
+  def commit
+    load_directory_homework
+    @parent = Project.find(params[:id])
+    @project = @directory_homework.projects.new
+  end
+
   def show
     load_directory_homework
-    @project = @directory_homework.projects.find(params[:id])
+    @project = Project.find(params[:id])
 
     # @content = CodeRay.scan(File.read('tmp/test.cpp'), :cpp).div
     @content = CodeRay.scan_file('tmp/test.cpp').div
@@ -76,7 +83,7 @@ class ProjectsController < ApplicationController
     load_directory_homework
 
     @project = @directory_homework.projects.new(project_params)
-
+    @project.project_id = params[:project][:parent_id]
     respond_to do |format|
       if @project.save
         format.html { redirect_to [@directory_homework, @project], notice: 'Project created'}
