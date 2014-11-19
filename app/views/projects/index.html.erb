@@ -11,8 +11,10 @@
     <% @projects.each do |project| %>
       <tr>
         <td><%= link_to project.project_name, directory_homework_project_path(@directory_homework, project) %></td>
-        <td>[<%= link_to 'Edit', edit_directory_homework_project_path(@directory_homework, project) %>
-        / <%= link_to 'Destroy', directory_homework_project_path(@directory_homework, project), method: :delete, data: { confirm: 'Are you sure?' } %>]</td>
+        <%if current_user.id == project.user_id %>
+          <td>[<%= link_to 'Edit', edit_directory_homework_project_path(@directory_homework, project) %>
+          / <%= link_to 'Destroy', directory_homework_project_path(@directory_homework, project), method: :delete, data: { confirm: 'Are you sure?' } %>]</td>
+        <%end%>
       </tr>
     <% end %>
   </table>
