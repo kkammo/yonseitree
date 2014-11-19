@@ -1,11 +1,25 @@
 <div id="page-wrap" >
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Project name:</strong>
-  <%= @project.project_name %>
-</p>
+<div class="row">
+  <div class="pull-right">
+    <%= @semester.semester_name %> >
+    <%= @class.class_name %> >
+    <%= @directory_homework.class_name %> >
+  </div>
+</div>
 
+<div class="row">
+  <h3>
+    <%= @creator.user_name%> /
+    <strong><%= @project.project_name %></strong>
+  </h3>
+  <div class="pull-right">
+    <%= render 'likes/like' %>
+    :
+    <%= @project.likes.count %>
+  </div>
+</div>
 <p>
   <strong>Description:</strong>
   <div class="well">
@@ -15,11 +29,6 @@
 
 <%= render html: @content.html_safe %>
 
-<p>
-	<strong>Count: </strong>
-	<%= @project.likes.count %>
-</p> 
-
 <h2>댓글</h2>
 <%= render @project.comments %>
 
@@ -27,20 +36,6 @@
 <%= render "comments/form" %>
 
 
-<% if((@project.likes.exists?(user_id: current_user.id, project_id: @project.id))) %>
-	<%= link_to 'Destroy Like', {:controller => "likes",              
-               :action => "destroy",
-               :project_id => @project.id,
-               :user_id => current_user.id},
-               :confirm => 'Are you sure?',
-               :method => "delete" %>
-<% else %>
-	<%= link_to 'Like', {:controller => "likes",
-		     :action => "create",
-		     :project_id => @project.id,
-		     :user_id => current_user.id},\
-		     :method => "post" %>
-<% end %>
 <!-- 라이크 누르면 화면 뒤로갈때 라이크 누르기전 되는 이유 -->
 
 

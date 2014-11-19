@@ -50,7 +50,10 @@ class ProjectsController < ApplicationController
 
   def show
     load_directory_homework
+    @class = DirectoryClass.find(@directory_homework.directory_class_id)
+    @semester = DirectorySemester.find(@class.directory_semester_id)
     @project = Project.find(params[:id])
+    @creator = User.find(@project.user_id)
 
     # @content = CodeRay.scan(File.read('tmp/test.cpp'), :cpp).div
     @content = CodeRay.scan_file('tmp/test.cpp').div
@@ -91,6 +94,8 @@ class ProjectsController < ApplicationController
 
     @project = @directory_homework.projects.new(project_params)
     @project.project_id = params[:project][:parent_id]
+    puts current_user
+    @project.user_id = current_user.id
     respond_to do |format|
       if @project.save
         format.html { redirect_to [@directory_homework, @project], notice: 'Project created'}

@@ -4,6 +4,7 @@ class HomeController < ApplicationController
   	if current_user
   		require_permit
   		@directory_semesters = DirectorySemester.all
-  	end  	
+  		@projects = Project.where(user_id:current_user.id).all
+   	end  	
   end
 end

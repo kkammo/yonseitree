@@ -1,5 +1,18 @@
-
-<p>
-  <%= link_to 'Destroy Like', [like.project, like],
-               method: :delete %>
-</p>
+<tr>
+	<td>
+		<% if((@project.likes.exists?(user_id: current_user.id, project_id: @project.id))) %>
+	    <%= link_to 'Destroy Like', {:controller => "likes",              
+	                 :action => "destroy",
+	                 :project_id => @project.id,
+	                 :user_id => current_user.id},
+	                 :confirm => 'Are you sure?',
+	                 :method => "delete" %>
+	    <% else %>
+	      <%= link_to 'Like', {:controller => "likes",
+	             :action => "create",
+	             :project_id => @project.id,
+	             :user_id => current_user.id},\
+	             :method => "post" %>
+	    <% end %>
+	</td>
+</tr>

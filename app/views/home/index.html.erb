@@ -20,6 +20,11 @@
 
     <% if user_signed_in? %>
 	    <h1> Welcome!</h1>
+      <h3>My Projects</h3>
+      <table class="table table-condensed">
+        <%= render(@projects) %>
+      </table>
+      </h3>
 	    <h3>
 		    Semesters
 		    <%= link_to "NEW", new_directory_semester_path, :class => 'btn btn-info pull-right' %>

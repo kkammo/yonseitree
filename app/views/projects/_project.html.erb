@@ -1,0 +1,13 @@
+<tr>
+	<% @homework = DirectoryHomework.find(project.directory_homework_id) %>
+	<% @class = DirectoryClass.find(@homework.directory_class_id) %>
+	<td><%= link_to project.project_name, directory_homework_project_path(@homework, project) %>
+		<div class="pull-right">
+			<h6>
+				<%= link_to @class.class_name, directory_class_path(@class) %> >
+				<%= link_to @homework.class_name, directory_homework_projects_path(@homework)  %>
+				
+			</h6>
+		</div>
+	</td>
+</tr>
