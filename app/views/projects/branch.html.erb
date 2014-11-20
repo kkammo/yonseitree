@@ -16,8 +16,10 @@
       <tr>
         <td><%= link_to branch.project_name, directory_homework_project_path(@project.directory_homework_id, branch) %></td>
         <td>
+          <div class="btn-group btn-group-xs">
           <% @project = branch %>
-          <%= render 'likes/like' %>
+            <%= render 'likes/like' %>
+          </div>
           <% @project = Project.find(branch.parent_id) %>
         </td>
         <td>[<%= link_to 'Edit', edit_directory_homework_project_path(@project.directory_homework_id, branch) %>

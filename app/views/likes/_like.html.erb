@@ -1,3 +1,4 @@
+<button type="button" class="btn btn-default">
 <% if((@project.likes.exists?(user_id: current_user.id, project_id: @project.id))) %>
 <%= link_to 'Destroy Like', {:controller => "likes",              
              :action => "destroy",
@@ -12,5 +13,5 @@
          :user_id => current_user.id},\
          :method => "post" %>
 <% end %>
-:
-<%= @project.likes.count %>
+</button>
+<button type="button" class="btn btn-default"><%= @project.likes.count %></button>
