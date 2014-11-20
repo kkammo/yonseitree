@@ -1,4 +1,8 @@
+require 'carrierwave/orm/activerecord'
+
 class Project < ActiveRecord::Base
+	mount_uploader :codefile, CodefileUploader
+
 	belongs_to :directory_homework
 
 	accepts_nested_attributes_for :directory_homework
