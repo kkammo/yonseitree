@@ -22,8 +22,10 @@
           </div>
           <% @project = Project.find(branch.parent_id) %>
         </td>
-        <td>[<%= link_to 'Edit', edit_directory_homework_project_path(@project.directory_homework_id, branch) %>
-        / <%= link_to 'Destroy', directory_homework_project_path(@project.directory_homework_id, branch), method: :delete, data: { confirm: 'Are you sure?' } %>]</td>
+        <% if branch.is_terminal %>
+          <td>[<%= link_to 'Edit', edit_directory_homework_project_path(@project.directory_homework_id, branch) %>
+          / <%= link_to 'Destroy', directory_homework_project_path(@project.directory_homework_id, branch), method: :delete, data: { confirm: 'Are you sure?' } %>]</td>
+        <% end %>
       </tr>
     <% end %>
   </table>
@@ -33,5 +35,3 @@
 <br>
 
 <%= link_to 'Commit', commit_directory_homework_project_path %>
-
-</div>

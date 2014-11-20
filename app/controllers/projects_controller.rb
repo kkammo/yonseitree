@@ -100,7 +100,6 @@ class ProjectsController < ApplicationController
 
     @project = @directory_homework.projects.new(project_params)
     @project.project_id = params[:project][:parent_id]
-    puts current_user
     @project.user_id = current_user.id
     respond_to do |format|
       if @project.save
