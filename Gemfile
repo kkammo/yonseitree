@@ -49,5 +49,5 @@ gem 'coderay'
 # gem 'debugger', group: [:development, :test]
 
 gem 'figaro'
-gem 'fog'
-gem 'carrierwave'
+# gem 'fog'
+gem 'carrierwave-aws'
