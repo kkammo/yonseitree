@@ -27,7 +27,7 @@ class DirectorySemestersController < ApplicationController
     @directory_semester = DirectorySemester.new(directory_semester_params)
     respond_to do |format|
       if @directory_semester.save
-        format.html { redirect_to directory_semesters_path, notice: 'Directory created'}
+        format.html { redirect_to root_path, notice: 'Directory created'}
       else
         format.html{ render action: "new"}
       end
@@ -49,7 +49,7 @@ class DirectorySemestersController < ApplicationController
     @directory_semester.destroy
     respond_to do |format|
       if @directory_semester.destroy
-        format.html { redirect_to directory_semesters_path, notices: "Directory destroyed"}
+        format.html { redirect_to root_path, notices: "Directory destroyed"}
       else
         format.html{ render action: "new"}
       end
