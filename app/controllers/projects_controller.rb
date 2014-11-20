@@ -135,7 +135,9 @@ class ProjectsController < ApplicationController
 
   def search
     if params[:search].length > 0
+
       @projects = Project.search(params[:search])
+      @search = String.new(params[:search])
     else
       @projects = nil
     end 
