@@ -3,8 +3,6 @@
 @import "bootstrap";
 body { 
     padding-top: 80px;
-    padding-left: 300px;
-    padding-right: 300px;
     background-color: white;
 }
  
@@ -17,5 +15,18 @@ body {
 :-moz-placeholder {
    color: #808080;
    text-align: center;
- 
+}
+
+#page-wrap {
+     width: 900px;
+     margin: 0 auto;
+}
+
+#regist-wrap {
+     width: 1000px;
+     margin: 0 auto;
+}
+
+#regist-input {
+     width: 500px;
 }

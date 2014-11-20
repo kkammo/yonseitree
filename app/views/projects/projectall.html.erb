@@ -1,0 +1,10 @@
+<h2>Projects</h2>
+  <table class="table table-condensed">
+    <% @projects.each do |project| %>
+      <tr>
+        <td><%= link_to project.project_name, project_project_show_path(project) %></td>
+        <td>[<%= link_to 'Edit', project_project_edit_path(project) %>/
+        <%= link_to 'Destroy', project_project_destroy_path(project.id), method: :delete, data: { confirm: 'Are you sure?' } %>]</td>
+      </tr>
+    <% end %>
+  </table>

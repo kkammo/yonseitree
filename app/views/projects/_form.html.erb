@@ -1,4 +1,4 @@
-<%= form_for(@project) do |f| %>
+<%= form_for([@directory_homework, @project], :html => {:multipart => true}) do |f| %>
   <% if @project.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@project.errors.count, "error") %> prohibited this project from being saved:</h2>
@@ -11,8 +11,9 @@
     </div>
   <% end %>
 
+<!--
   <div class="field">
-    <%= f.label :project_name %><br>
+    <%= f.label :project_name %>
     <%= f.text_field :project_name %>
   </div>
   <div class="field">
@@ -22,4 +23,45 @@
   <div class="actions">
     <%= f.submit %>
   </div>
+-->
+
+
+  <br><br>
+  <div class="form-group" style="padding: 10px">
+        <label for="project_name" class="col-lg-3 control-label">
+          <font color = "green">프로젝트 이름</font>
+        </label>
+        <div class="col-lg-7">
+          <input style="border-width:3px; border-style:solid; border-color: skyblue; auto; padding:0px;" id="project_name" name="project[project_name]" type="text" class="form-control" placeholder="프로젝트 이름"/>
+        </div>
+      </div>
+<br>
+
+    <%= f.file_field :codefile %>
+
+<!--   <div class="form-group" style="padding: 10px">
+        <label for="project_name" class="col-lg-3 control-label">
+          <font color = "green" >파일 선택</font>
+        </label>
+        <div class="col-lg-7">
+          <form action="" method"upload" enctype"multipart/form-data" name="">
+            <input  style="border-width:3px; border-style:solid; border-color: skyblue; auto; padding:0px;"  type="file" name = "FileName" class="form-control" />
+          </form>
+        </div>
+      </div> -->
+
+
+  <div class="form-group">
+    <div style = "padding:30px" class="col-lg-10">
+          <textarea style="border-width:3px; border-style:solid; border-color: skyblue; auto; padding:10px;" rows = "30" cols = "15" id="description" name="project[description]" type="text_area" class="form-control" placeholder="프로젝트에 대한 설명을 작성 해 주세요." ></textarea>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <div class="col-lg-offset-3 col-lg-7 row-lg-2">
+      <input class="btn btn-info btn-lg pull-right" name="commit" type="submit" value="업로드" style="font-size: 20px" margin-top = "20px" />
+    </div>
+  </div>
+
+
 <% end %>

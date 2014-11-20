@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
 
+  get 'admin' => 'admin#index'
+  get 'admin_permit' => 'admin#change_permit'
+
   root :to => "home#index"
 
   # devise_for :users
@@ -7,7 +10,13 @@ Rails.application.routes.draw do
 
   resources :projects do
     get 'search', on: :collection
+    get "projectall", on: :collection
+    get "project_show"
+    get "project_edit"
+    delete "project_destroy"
+
     resources :comments
+    resources :likes
   end
 
   resources :directory_semesters do

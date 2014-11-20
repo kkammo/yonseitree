@@ -1,6 +1,7 @@
 class DirectorySemestersController < ApplicationController
   before_action :set_directory_semester, only: [:show, :edit, :update, :destroy]
-
+  before_filter :require_permit
+  
   def index
     @directory_semesters = DirectorySemester.all
   end

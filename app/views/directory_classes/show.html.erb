@@ -1,4 +1,4 @@
-<p id="notice"><%= notice %></p>
+<div id="page-wrap" >
 
 <!--
 <p>
@@ -31,7 +31,7 @@
   <table class="table table-condensed">
     <% @directory_class.directory_homeworks.each do |homeworks| %>
       <tr>
-        <td><%= link_to homeworks.class_name, directory_homework_path(homeworks) %></td>
+        <td><%= link_to homeworks.class_name, directory_homework_projects_path(homeworks) %></td>
         <td>[<%= link_to 'Edit', edit_directory_homework_path(homeworks) %>
         / <%= link_to 'Destroy', homeworks, method: :delete, data: { confirm: 'Are you sure?' } %>]</td>
       </tr>
@@ -40,6 +40,7 @@
 
   <br><br><br>
 
+<% if @directory_class.user_id == current_user.id %>
   <div class="well well-sm pull-right">
     <%= form_for([@directory_class, @directory_class.directory_homeworks.build]) do |f| %>
       <p>
@@ -49,7 +50,10 @@
      </p>
     <% end %>
   </div>
+<% end %>
 
 
 <%= link_to 'Edit', edit_directory_class_path(@directory_class) %> |
 <%= link_to 'Back', directory_classes_path %>
+
+</div>

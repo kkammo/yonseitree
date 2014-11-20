@@ -1,3 +1,4 @@
+<div id="page-wrap" >
 <p id="notice"><%= notice %></p>
 
 <p>
@@ -14,5 +15,35 @@
 
 <%= render html: @content.html_safe %>
 
+<p>
+	<strong>Count: </strong>
+	<%= @project.likes.count %>
+</p> 
+
+<h2>댓글</h2>
+<%= render @project.comments %>
+
+<h2>댓글 달기</h2>
+<%= render "comments/form" %>
+
+
+<% if((@project.likes.exists?(user_id: current_user.id, project_id: @project.id))) %>
+	<%= link_to 'Destroy Like', {:controller => "likes",              
+               :action => "destroy",
+               :project_id => @project.id,
+               :user_id => current_user.id},
+               :confirm => 'Are you sure?',
+               :method => "delete" %>
+<% else %>
+	<%= link_to 'Like', {:controller => "likes",
+		     :action => "create",
+		     :project_id => @project.id,
+		     :user_id => current_user.id},\
+		     :method => "post" %>
+<% end %>
+<!-- 라이크 누르면 화면 뒤로갈때 라이크 누르기전 되는 이유 -->
+
+
 <%= link_to 'Edit', edit_project_path(@project) %> |
 <%= link_to 'Back', projects_path %>
+</div>

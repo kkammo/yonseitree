@@ -1,5 +1,6 @@
 class DirectoryClassesController < ApplicationController
   before_action :set_directory_class, only: [:show, :edit, :update, :destroy]
+  before_filter :require_permit
 
   def index
     @directory_classes = DirectoryClass.all

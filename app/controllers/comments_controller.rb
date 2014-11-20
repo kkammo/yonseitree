@@ -1,10 +1,24 @@
 class CommentsController < ApplicationController
+  before_filter :require_permit
 
   def create
     @project = Project.find(params[:project_id])
     @user = current_user
-    @comment = @post.comments.create(params[:comment])
-    redirect_to post_path(@post)
+    @comment = @project.comments.create(body: comment_params[:body], user_id: current_user.id, commenter: current_user.user_name)
+    redirect_to :back
   end
 
+  def destroy
+    @project = Project.find(params[:project_id])
+    @comment = @project.comments.find(params[:id])
+    @comment.destroy
+    redirect_to :back
+  end
+
+private
+    def comment_params
+
+      params.require(:comment).permit(:body)
+      #user_id 어떻
+    end
 end
