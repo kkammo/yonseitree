@@ -3,9 +3,12 @@ class ProjectsController < ApplicationController
   before_filter :require_permit
 
   def index
-    load_directory_homework
+    @homework = DirectoryHomework.find(params[:directory_homework_id])
+    @class = DirectoryClass.find(@homework.directory_class_id)
+    @semester = DirectorySemester.find(@class.directory_semester_id)
     @projects = []
-    @directory_homework.projects.all.each { |p| @projects << p if p.parent_id.nil? }
+    @homework.projects.all.each { |p| @projects << p if p.parent_id.nil? }
+    @projects = @projects.sort_by{|e| -e.likes.count }
   end
 
   def projectall
@@ -38,8 +41,11 @@ class ProjectsController < ApplicationController
   end
   def branch
     @project = Project.find(params[:id])
-    @branches = []
-    Project.all.each { |p| @branches << p if p.parent_id == @project.id }
+    @homework = DirectoryHomework.find(@project.directory_homework_id)
+    @class = DirectoryClass.find(@homework.directory_class_id)
+    @semester = DirectorySemester.find(@class.directory_semester_id)
+    @user = User.find(@project.user_id)
+    @branches = Project.where(:project_id => @project.id).all.sort_by{ |e| -e.likes.count }
   end
 
   def commit

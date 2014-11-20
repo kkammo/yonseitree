@@ -2,18 +2,26 @@
 
 <ol class="breadcrumb pull-right">
     <li class="active">
-      <%= @directory_homework.class_name %>
+      <%= @homework.class_name %>
     </li>
 </ol>
 
-<h2>Projects</h2>
+<%= link_to @semester.semester_name, directory_semester_path(@semester) %> >
+<%= link_to @class.class_name, directory_class_path(@semester) %> >
+
+
+<h3><%= link_to @homework.class_name, directory_homework_projects_path(@homework)  %></h3>
   <table class="table table-condensed">
     <% @projects.each do |project| %>
       <tr>
-        <td><%= link_to project.project_name, directory_homework_project_path(@directory_homework, project) %></td>
+        <td><%= link_to project.project_name, directory_homework_project_path(@homework, project) %></td>
+        <td>
+          Like:
+          <%= project.likes.count %>
+        </td>
         <%if current_user.id == project.user_id %>
-          <td>[<%= link_to 'Edit', edit_directory_homework_project_path(@directory_homework, project) %>
-          / <%= link_to 'Destroy', directory_homework_project_path(@directory_homework, project), method: :delete, data: { confirm: 'Are you sure?' } %>]</td>
+          <td>[<%= link_to 'Edit', edit_directory_homework_project_path(@homework, project) %>
+          / <%= link_to 'Destroy', directory_homework_project_path(@homework, project), method: :delete, data: { confirm: 'Are you sure?' } %>]</td>
         <%end%>
       </tr>
     <% end %>
