@@ -25,7 +25,7 @@
         <%= render(@projects) unless @projects.nil?%>
       </table>
       </h3>
-
+      <%= paginate @projects %>
       <h3>Semesters</h3>
       <%if current_user.role == "admin" %>
   	    <h3>

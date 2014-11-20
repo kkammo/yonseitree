@@ -6,9 +6,8 @@ class ProjectsController < ApplicationController
     @homework = DirectoryHomework.find(params[:directory_homework_id])
     @class = DirectoryClass.find(@homework.directory_class_id)
     @semester = DirectorySemester.find(@class.directory_semester_id)
-    @projects = []
-    @homework.projects.all.each { |p| @projects << p if p.parent_id.nil? }
-    @projects = @projects.sort_by{|e| -e.likes.count }
+    @projects = @homework.projects.where("project_id IS ?", nil).sort_by{|e| -e.likes.count }
+    @projects = Kaminari.paginate_array(@projects).page(params[:page]).per(5)
   end
 
   def projectall
@@ -46,6 +45,7 @@ class ProjectsController < ApplicationController
     @semester = DirectorySemester.find(@class.directory_semester_id)
     @user = User.find(@project.user_id)
     @branches = Project.where(:project_id => @project.id).all.sort_by{ |e| -e.likes.count }
+    @branches = Kaminari.paginate_array(@branches).page(params[:page]).per(5)
   end
 
   def commit
