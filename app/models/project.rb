@@ -23,7 +23,7 @@ class Project < ActiveRecord::Base
 			parent_id.nil?
 		end
 
-		def is_terminal
-			Project.where(:project_id => self.id).all.count == 0
+		def is_editable(current_user)
+			current_user.id == self.user_id and Project.where(:project_id => self.id).all.count == 0
 		end
 end

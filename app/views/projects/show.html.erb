@@ -1,5 +1,5 @@
 <div id="page-wrap" >
-<p id="notice"><%= notice %></p>
+<p id="notice"></p>
 
 <div class="row">
   <div class="pull-left">
@@ -14,9 +14,14 @@
   <h3>
     <%= @creator.user_name%> /
     <strong><%= @project.project_name %></strong>
-    <span class="btn-group">
-    <%= button_to '수정', edit_project_path(@project), :class =>"btn btn-default btn-xs", :method => "get" if @editable %>
-    </span>
+    <% if @project.is_editable(current_user) %>
+      <span class="btn-group">
+      <%= button_to '수정', edit_directory_homework_project_path(@directory_homework, @project), :class =>"btn btn-default btn-xs", :method => "get" %>
+      </span>
+      <span class="btn-group">
+      <%= button_to '삭제', directory_homework_project_path(@directory_homework, @project), :class =>"btn btn-default btn-xs", :method => :delete, data: { confirm: '삭제하시겠습니까?' } %>
+      </span>
+    <% end %>
     <div class="btn-toolbar pull-right" >
     <div class="btn-group">
       <%= button_to "상위 프로젝트", upper_directory_homework_project_path, :class => "btn btn-default", :method => "get" %>
@@ -45,6 +50,7 @@
         <%= render @project.comments %>
     </table>
     <%= render "comments/form" %>
+    <br/><br/>
   </div>
 </div>
 
