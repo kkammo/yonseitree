@@ -10,26 +10,6 @@ class ProjectsController < ApplicationController
     @projects = Kaminari.paginate_array(@projects).page(params[:page]).per(5)
   end
 
-  def projectall
-    @projects = Project.all
-  end
-
-  def project_show
-    @project = Project.find(params[:project_id])
-    @content = CodeRay.scan_file('tmp/test.cpp').div
-  end
-
-  def project_destroy
-    @project = Project.find(params[:project_id])
-    @project.destroy
-
-    redirect_to projectall_projects_path
-  end
-
-  def project_edit
-    @project = Project.find(params[:project_id])
-  end
-
   def upper
     @project = Project.find(params[:id])
     if @project.parent_id.nil?
@@ -63,7 +43,6 @@ class ProjectsController < ApplicationController
     @parent = Project.find(@project.parent_id) unless @project.parent_id.nil?
     # @content = CodeRay.scan(File.read('tmp/test.cpp'), :cpp).div
     @content = CodeRay.scan_file('tmp/test.cpp').div
-    @editable = @creator.id == current_user.id && @project.is_terminal
     respond_to do |format|
       format.html
       format.xml { render :xml => @project }
@@ -87,7 +66,7 @@ class ProjectsController < ApplicationController
     load_directory_homework
     @project = @directory_homework.projects.find(params[:id])
     #@project = Project.find(params[:id])
-
+    @parent = @project.parent_id.nil? ? @directory_homework : Project.find(@project.parent_id)
     respond_to do |format|
       format.html
       format.xml { render :xml => @project }
