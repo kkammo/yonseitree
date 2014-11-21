@@ -3,9 +3,11 @@ class ProjectsController < ApplicationController
   before_filter :require_permit
 
   def index
-    load_directory_homework
-    @projects = []
-    @directory_homework.projects.all.each { |p| @projects << p if p.parent_id.nil? }
+    @homework = DirectoryHomework.find(params[:directory_homework_id])
+    @class = DirectoryClass.find(@homework.directory_class_id)
+    @semester = DirectorySemester.find(@class.directory_semester_id)
+    @projects = @homework.projects.where("project_id IS ?", nil).sort_by{|e| -e.likes.count }
+    @projects = Kaminari.paginate_array(@projects).page(params[:page]).per(5)
   end
 
   def projectall
@@ -38,8 +40,12 @@ class ProjectsController < ApplicationController
   end
   def branch
     @project = Project.find(params[:id])
-    @branches = []
-    Project.all.each { |p| @branches << p if p.parent_id == @project.id }
+    @homework = DirectoryHomework.find(@project.directory_homework_id)
+    @class = DirectoryClass.find(@homework.directory_class_id)
+    @semester = DirectorySemester.find(@class.directory_semester_id)
+    @user = User.find(@project.user_id)
+    @branches = Project.where(:project_id => @project.id).all.sort_by{ |e| -e.likes.count }
+    @branches = Kaminari.paginate_array(@branches).page(params[:page]).per(5)
   end
 
   def commit
@@ -94,7 +100,6 @@ class ProjectsController < ApplicationController
 
     @project = @directory_homework.projects.new(project_params)
     @project.project_id = params[:project][:parent_id]
-    puts current_user
     @project.user_id = current_user.id
     respond_to do |format|
       if @project.save

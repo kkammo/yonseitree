@@ -1,13 +1,19 @@
 <tr>
-	<% @homework = DirectoryHomework.find(project.directory_homework_id) %>
-	<% @class = DirectoryClass.find(@homework.directory_class_id) %>
-	<td><%= link_to project.project_name, directory_homework_project_path(@homework, project) %>
+	<td>
 		<div class="pull-right">
 			<h6>
-				<%= link_to @class.class_name, directory_class_path(@class) %> >
-				<%= link_to @homework.class_name, directory_homework_projects_path(@homework)  %>
-				
+				<% @homework = DirectoryHomework.find(project.directory_homework_id) %>
+				<% @class = DirectoryClass.find(@homework.directory_class_id) %>
+				<% @semester = DirectorySemester.find(@class.directory_semester_id) %>
+				<% @parent = Project.find(project.parent_id) unless project.parent_id.nil? %>
+
+				<%= link_to @semester.semester_name, directory_semester_path(@semester) %> >
+				<%= link_to @class.class_name, directory_class_path(@semester) %> >
+				<%= link_to @homework.class_name, directory_homework_projects_path(@homework)  %> >
+				<%= link_to @parent.project_name, directory_homework_project_path(@homework, @parent) unless @parent.nil? %>	
 			</h6>
 		</div>
+		<%= link_to project.project_name, directory_homework_project_path(@homework, project) %>
+		
 	</td>
 </tr>

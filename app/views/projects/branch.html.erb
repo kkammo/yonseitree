@@ -6,21 +6,33 @@
     </li>
 </ol>
 
-<h2>Projects</h2>
+<%= link_to @semester.semester_name, directory_semester_path(@semester) %> >
+<%= link_to @class.class_name, directory_class_path(@semester) %> >
+<%= link_to @homework.class_name, directory_homework_projects_path(@homework)  %>
+
+<h3><%= @user.user_name%> / <%= link_to @project.project_name, directory_homework_project_path(@project.directory_homework_id, @project) %></h3>
   <table class="table table-condensed">
     <% @branches.each do |branch| %>
       <tr>
         <td><%= link_to branch.project_name, directory_homework_project_path(@project.directory_homework_id, branch) %></td>
-        <td>[<%= link_to 'Edit', edit_directory_homework_project_path(@project.directory_homework_id, branch) %>
-        / <%= link_to 'Destroy', directory_homework_project_path(@project.directory_homework_id, branch), method: :delete, data: { confirm: 'Are you sure?' } %>]</td>
+        <td>
+          <div class="btn-group btn-group-xs">
+          <% @project = branch %>
+            <%= render 'likes/like' %>
+          </div>
+          <% @project = Project.find(branch.parent_id) %>
+        </td>
+        <% if branch.is_terminal %>
+          <td>[<%= link_to 'Edit', edit_directory_homework_project_path(@project.directory_homework_id, branch) %>
+          / <%= link_to 'Destroy', directory_homework_project_path(@project.directory_homework_id, branch), method: :delete, data: { confirm: 'Are you sure?' } %>]</td>
+        <% end %>
       </tr>
     <% end %>
   </table>
+  <%= paginate @branches %>
 
 
 
 <br>
 
 <%= link_to 'Commit', commit_directory_homework_project_path %>
-
-</div>
