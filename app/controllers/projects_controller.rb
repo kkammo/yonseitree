@@ -90,19 +90,12 @@ class ProjectsController < ApplicationController
   end
 
   def update
+    load_directory_homework
     @project.update(project_params)
-
-    
-      #if @project.save
-      #  format.html { redirect_to directory_homework_projects_path(@directory_homework), notice: 'Project edited'}
-      #else
-      #  format.html { render action: "new" }
-
-      if @directory_homework #if it is in directory_homework
-        redirect_to directory_homework_projects_path(@directory_homework)
+      if @project.save
+        redirect_to directory_homework_project_path(@directory_homework, @project)
       else
-        redirect_to project_project_show_path(@project)
-      
+        format.html { render action: "edit"}
     end
   end
 
