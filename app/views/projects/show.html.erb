@@ -41,7 +41,13 @@
 	</div>
 </p>
 
+<h4> /<%= @project.codefile.split(/.*\//)[1] %> </h4>
 <%= render html: @content.html_safe %>
+
+
+<!-- <pre>
+  <%= @code %>
+</pre> -->
 
 <div class="row">
   <h3>댓글</h3>

@@ -49,3 +49,4 @@ gem 'coderay'
 # gem 'debugger', group: [:development, :test]
 
 gem 'transloadit-rails'
+gem 'paperclip'

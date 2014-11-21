@@ -1,11 +1,15 @@
-<% if params[:transloadit] %>
-	<%= link_to params[:transloadit]["results"]["encode"][0]["url"] %>
- <% end %>
-
-<% puts "==================" %>
-<% puts @flash %>
-<% puts "==================" %>
-
-<% if @flash %>
- 	<%= link_to '완료', new_directory_homework_project_path(DirectoryHomework.find(@flash)) %>
- <% end %> 
+<% if @flash && params[:transloadit] %>
+	<% if params[:transloadit]["results"].length > 0 %>
+		<h2> 파일 첨부 성공! </h2>
+		<p>
+			URL: <%= params[:transloadit]["results"]["encode"][0]["url"] %>
+		</p>
+ 		<%= link_to '계속 작성하기', new_directory_homework_project_path(DirectoryHomework.find(@flash), :codefile_url => params[:transloadit]["results"]["encode"][0]["url"]) %>
+ 	<% else %>
+ 		<h2>파일을 첨부하지 않았습니다.</h2>
+		<%= link_to '다시 첨부하기', new_upload_path(:dh_id => @flash) %>
+ 	<% end %>
+<% else %>
+	<h2>업로드에 실패하였습니다.</h2>
+	<%= link_to '다시 첨부하기', new_upload_path(:dh_id => @flash) %>
+<% end %>

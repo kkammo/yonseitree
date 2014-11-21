@@ -2,7 +2,7 @@ class UploadsController < ApplicationController
 	include Transloadit::Rails::ParamsDecoder
   
   def new
-  	# params[:directory_homework_id]
+  	@d_id = params[:dh_id]
   end
 
   def create

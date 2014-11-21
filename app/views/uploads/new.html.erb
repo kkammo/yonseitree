@@ -7,7 +7,9 @@
   <%= form.file_field :file %>
   <%= form.submit %>
   
-  <%= form.number_field :d_id, :value => params[:directory_homework_id] %>
+  <div class="invisible">
+  	<%= form.number_field :d_id, :value => @d_id %>
+  </div>
 
 <% end %>
 

@@ -43,8 +43,9 @@ class ProjectsController < ApplicationController
     @project = Project.find(params[:id])
     @creator = User.find(@project.user_id)
     @parent = Project.find(@project.parent_id) unless @project.parent_id.nil?
-    # @content = CodeRay.scan(File.read('tmp/test.cpp'), :cpp).div
-    @content = CodeRay.scan_file('tmp/test.cpp').div
+    @content = CodeRay.scan(URI.parse(@project.codefile).read, set_format(@project.codefile)).div
+    # @content = CodeRay.scan_file('tmp/test.cpp').div
+
     respond_to do |format|
       format.html
       format.xml { render :xml => @project }
@@ -62,6 +63,9 @@ class ProjectsController < ApplicationController
     load_directory_homework
     #@project = Project.new
     @project = @directory_homework.projects.new
+
+    @file_url = params[:codefile_url]
+
   end
 
   def edit
@@ -69,6 +73,7 @@ class ProjectsController < ApplicationController
     @project = @directory_homework.projects.find(params[:id])
     #@project = Project.find(params[:id])
     @parent = @project.parent_id.nil? ? @directory_homework : Project.find(@project.parent_id)
+    @file_url = @project.codefile
     respond_to do |format|
       format.html
       format.xml { render :xml => @project }
@@ -82,6 +87,8 @@ class ProjectsController < ApplicationController
     @project = @directory_homework.projects.new(project_params)
     @project.project_id = params[:project][:parent_id]
     @project.user_id = current_user.id
+    # @project.codefile = params[:project][:file_url]
+
     
     respond_to do |format|
       if @project.save
@@ -140,6 +147,16 @@ class ProjectsController < ApplicationController
     end
 
     def project_params
-      params.require(:project).permit(:project_name, :description)
+      params.require(:project).permit(:project_name, :description, :codefile)
+    end
+
+    def set_format(url)
+      format = url.split(/.*\./)[1]
+      if format == "rb"
+        format = "ruby"
+      elsif format == "py"
+        format = "python"
+      end
+      format
     end
 end

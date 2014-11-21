@@ -30,3 +30,9 @@ body {
 #regist-input {
      width: 500px;
 }
+
+#project-file {
+  height: 60px;
+  text-overflow: clip;
+  word-break: break-all;
+}
