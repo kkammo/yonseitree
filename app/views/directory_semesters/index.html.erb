@@ -13,16 +13,14 @@
 
   <br><br><br>
 
-
-  
-  <div class="well well-sm pull-right">
-    <%= form_for :directory_semester do |f| %>
-      <p>
-        <%= f.label '학기이름' %><br>
-        <%= f.text_field :semester_name %>
-        <%= f.submit 'NEW', :class=> 'btn btn-info'%>
-      </p>
-    <% end %>
-  </div>
-
-<br>
+  <% if current_user.role == "admin" %>
+    <div class="well well-sm pull-right">
+      <%= form_for :directory_semester do |f| %>
+        <p>
+          <%= f.label '학기이름' %><br>
+          <%= f.text_field :semester_name %>
+          <%= f.submit 'NEW', :class=> 'btn btn-info'%>
+        </p>
+      <% end %>
+    </div>
+  <% end %>

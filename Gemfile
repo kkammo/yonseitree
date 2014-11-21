@@ -10,7 +10,7 @@ group :production do
   gem 'rails_12factor'
   gem 'pg'
 end
-
+gem 'kaminari'
 gem 'sprockets-rails'
 gem 'autoprefixer-rails'
 gem 'bootstrap-sass', '~> 3.3.0'

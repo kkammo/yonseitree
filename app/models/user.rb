@@ -6,6 +6,8 @@ class User < ActiveRecord::Base
 
   has_many :projects
 
+  validates :user_name, presence: true
+
  	validates :student_id, presence: true, length: {maximum: 10}, uniqueness: { case_sensitive: false }, format: { with: /\A[0-9]*\z/, message: "ID는 숫자만 입력할 수 있습니다." }
 
   validates :role, presence: true, format: { with: /(\Astudent\z|\Ata\z|\Aadmin\z)/ }

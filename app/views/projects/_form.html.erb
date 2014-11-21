@@ -36,4 +36,7 @@
     </div>
   </div>
 
+<div class="invisible">
+  <%= f.number_field :parent_id, :value => @parent.id if params.has_key?(:id) %>
+</div> 
 <% end %>

@@ -19,11 +19,21 @@
     <% end %>
 
     <% if user_signed_in? %>
-	    <h1> Welcome!</h1>
-	    <h3>
-		    Semesters
-		    <%= link_to "NEW", new_directory_semester_path, :class => 'btn btn-info pull-right' %>
-	    </h3>
+      <%if current_user.permit %>
+	    
+      <h1> Welcome!</h1>
+      <h3>My Projects</h3>
+      <table class="table table-condensed">
+        <%= render(@projects) unless @projects.nil?%>
+      </table>
+      </h3>
+      <%= paginate @projects unless @projects.nil?%>
+      <h3>Semesters</h3>
+      <%if current_user.role == "admin" %>
+  	    <h3>
+  		    <%= link_to "NEW", new_directory_semester_path, :class => 'btn btn-info pull-right' %>
+  	    </h3>
+      <%end%>
 
 	   <table class="table table-condensed">
   	   <thead>
@@ -40,8 +50,16 @@
     	   <% end %>
   	   </tbody>
 	   </table>
+
+     <% else %>
+     <div class="col-ld-9">
+          <%= image_tag 'yt_simbol.png', :size => "300x300" %>
+      </div>
+      <br>
+     <h2> 관리자의 승인이 필요합니다 </h2>
+     <% end %>
   </div>
-    <% else %>
+    <% else%>
       <div class="row" style="background-color: white">
         <div class="col-md-6">
           <%= image_tag 'yt_simbol.png', :size => "300x300" %>

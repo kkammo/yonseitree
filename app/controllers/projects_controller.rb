@@ -5,39 +5,46 @@ class ProjectsController < ApplicationController
   before_filter :require_permit
 
   def index
+    @homework = DirectoryHomework.find(params[:directory_homework_id])
+    @class = DirectoryClass.find(@homework.directory_class_id)
+    @semester = DirectorySemester.find(@class.directory_semester_id)
+    @projects = @homework.projects.where("project_id IS ?", nil).sort_by{|e| -e.likes.count }
+    @projects = Kaminari.paginate_array(@projects).page(params[:page]).per(5)
+  end
+
+  def upper
+    @project = Project.find(params[:id])
+    if @project.parent_id.nil?
+      redirect_to directory_homework_projects_path
+    else
+      redirect_to branch_directory_homework_project_path(directory_homework_id:@project.directory_homework_id, id:@project.parent_id)
+    end
+  end
+  def branch
+    @project = Project.find(params[:id])
+    @homework = DirectoryHomework.find(@project.directory_homework_id)
+    @class = DirectoryClass.find(@homework.directory_class_id)
+    @semester = DirectorySemester.find(@class.directory_semester_id)
+    @user = User.find(@project.user_id)
+    @branches = Project.where(:project_id => @project.id).all.sort_by{ |e| -e.likes.count }
+    @branches = Kaminari.paginate_array(@branches).page(params[:page]).per(5)
+  end
+
+  def commit
     load_directory_homework
-    @projects = @directory_homework.projects.all
+    @parent = Project.find(params[:id])
+    @project = @directory_homework.projects.new
   end
-
-  def projectall
-    @projects = Project.all
-  end
-
-  def project_show
-    @project = Project.find(params[:project_id])
-    @content = CodeRay.scan_file('tmp/test.cpp').div
-  end
-
-  def project_destroy
-    @project = Project.find(params[:project_id])
-    @project.destroy
-
-    redirect_to projectall_projects_path
-  end
-
-  def project_edit
-    @project = Project.find(params[:project_id])
-  end
-
-  #all of above function is for without directory homework version...
 
   def show
     load_directory_homework
-    @project = @directory_homework.projects.find(params[:id])
-
+    @class = DirectoryClass.find(@directory_homework.directory_class_id)
+    @semester = DirectorySemester.find(@class.directory_semester_id)
+    @project = Project.find(params[:id])
+    @creator = User.find(@project.user_id)
+    @parent = Project.find(@project.parent_id) unless @project.parent_id.nil?
     # @content = CodeRay.scan(File.read('tmp/test.cpp'), :cpp).div
     @content = CodeRay.scan_file('tmp/test.cpp').div
-
     respond_to do |format|
       format.html
       format.xml { render :xml => @project }
@@ -61,7 +68,7 @@ class ProjectsController < ApplicationController
     load_directory_homework
     @project = @directory_homework.projects.find(params[:id])
     #@project = Project.find(params[:id])
-
+    @parent = @project.parent_id.nil? ? @directory_homework : Project.find(@project.parent_id)
     respond_to do |format|
       format.html
       format.xml { render :xml => @project }
@@ -73,7 +80,9 @@ class ProjectsController < ApplicationController
     load_directory_homework
 
     @project = @directory_homework.projects.new(project_params)
-    Rails.logger.info("PARAMS: #{params[:transloadit]}")
+    @project.project_id = params[:project][:parent_id]
+    @project.user_id = current_user.id
+    
     respond_to do |format|
       if @project.save
         format.html { redirect_to [@directory_homework, @project], notice: 'Project created'}
@@ -113,7 +122,9 @@ class ProjectsController < ApplicationController
 
   def search
     if params[:search].length > 0
+
       @projects = Project.search(params[:search])
+      @search = String.new(params[:search])
     else
       @projects = nil
     end 
