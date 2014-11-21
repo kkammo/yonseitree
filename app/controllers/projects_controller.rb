@@ -60,10 +60,10 @@ class ProjectsController < ApplicationController
     @semester = DirectorySemester.find(@class.directory_semester_id)
     @project = Project.find(params[:id])
     @creator = User.find(@project.user_id)
-
+    @parent = Project.find(@project.parent_id) unless @project.parent_id.nil?
     # @content = CodeRay.scan(File.read('tmp/test.cpp'), :cpp).div
     @content = CodeRay.scan_file('tmp/test.cpp').div
-
+    @editable = @creator.id == current_user.id && @project.is_terminal
     respond_to do |format|
       format.html
       format.xml { render :xml => @project }

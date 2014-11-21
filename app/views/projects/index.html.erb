@@ -19,6 +19,7 @@
           Like:
           <%= project.likes.count %>
         </td>
+        <!-- 여기 branch하면 삭제 못하게 하기 -->
         <%if current_user.id == project.user_id %>
           <td>[<%= link_to 'Edit', edit_directory_homework_project_path(@homework, project) %>
           / <%= link_to 'Destroy', directory_homework_project_path(@homework, project), method: :delete, data: { confirm: 'Are you sure?' } %>]</td>
