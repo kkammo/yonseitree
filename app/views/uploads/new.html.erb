@@ -1,0 +1,14 @@
+<%= javascript_include_tag '//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js' %>
+
+<h1>Upload an image</h1>
+<%= form_for Upload.new, :html => { :id => 'upload' } do |form| %>
+  <%= transloadit :s3_store %>
+  <%= form.label      :file, 'File to upload' %>
+  <%= form.file_field :file %>
+  <%= form.submit %>
+  
+  <%= form.number_field :d_id, :value => params[:directory_homework_id] %>
+
+<% end %>
+
+<%= transloadit_jquerify :upload, :wait => true %>

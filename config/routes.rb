@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
 
+  resources :uploads
+
+  get 'uploads/create'
+
   get 'admin' => 'admin#index'
   get 'admin_permit' => 'admin#change_permit'
 
@@ -29,6 +33,7 @@ Rails.application.routes.draw do
 
   resources :directory_homeworks do
     resources :projects
+    resources :uploads
   end
 
   #resources :directories do

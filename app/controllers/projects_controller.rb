@@ -1,4 +1,6 @@
 class ProjectsController < ApplicationController
+  include Transloadit::Rails::ParamsDecoder
+
   before_action :set_project, only: [:show, :edit, :update, :destroy]
   before_filter :require_permit
 
@@ -71,7 +73,7 @@ class ProjectsController < ApplicationController
     load_directory_homework
 
     @project = @directory_homework.projects.new(project_params)
-
+    Rails.logger.info("PARAMS: #{params[:transloadit]}")
     respond_to do |format|
       if @project.save
         format.html { redirect_to [@directory_homework, @project], notice: 'Project created'}

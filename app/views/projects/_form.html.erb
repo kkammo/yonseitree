@@ -11,21 +11,6 @@
     </div>
   <% end %>
 
-<!--
-  <div class="field">
-    <%= f.label :project_name %>
-    <%= f.text_field :project_name %>
-  </div>
-  <div class="field">
-    <%= f.label :description %><br>
-    <%= f.text_area :description %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
--->
-
-
   <br><br>
   <div class="form-group" style="padding: 10px">
         <label for="project_name" class="col-lg-3 control-label">
@@ -37,17 +22,7 @@
       </div>
 <br>
 
-<!--   <div class="form-group" style="padding: 10px">
-        <label for="project_name" class="col-lg-3 control-label">
-          <font color = "green" >파일 선택</font>
-        </label>
-        <div class="col-lg-7">
-          <form action="" method"upload" enctype"multipart/form-data" name="">
-            <input  style="border-width:3px; border-style:solid; border-color: skyblue; auto; padding:0px;"  type="file" name = "FileName" class="form-control" />
-          </form>
-        </div>
-      </div> -->
-
+      <%= link_to '코드 첨부', new_directory_homework_upload_path(:d_id => @directory_homework.id) %>
 
   <div class="form-group">
     <div style = "padding:30px" class="col-lg-10">
@@ -60,6 +35,5 @@
       <input class="btn btn-info btn-lg pull-right" name="commit" type="submit" value="업로드" style="font-size: 20px" margin-top = "20px" />
     </div>
   </div>
-
 
 <% end %>

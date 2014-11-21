@@ -1,0 +1,11 @@
+<% if params[:transloadit] %>
+	<%= link_to params[:transloadit]["results"]["encode"][0]["url"] %>
+ <% end %>
+
+<% puts "==================" %>
+<% puts @flash %>
+<% puts "==================" %>
+
+<% if @flash %>
+ 	<%= link_to '완료', new_directory_homework_project_path(DirectoryHomework.find(@flash)) %>
+ <% end %> 

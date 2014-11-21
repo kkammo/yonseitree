@@ -48,3 +48,4 @@ gem 'coderay'
 # Use debugger
 # gem 'debugger', group: [:development, :test]
 
+gem 'transloadit-rails'
