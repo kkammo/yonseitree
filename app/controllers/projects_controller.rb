@@ -76,7 +76,9 @@ class ProjectsController < ApplicationController
   def create
     #@project = Project.new(project_params)
     load_directory_homework
-
+    puts "======================="
+    puts params
+    puts "======================="
     @project = @directory_homework.projects.new(project_params)
     @project.project_id = params[:project][:parent_id]
     @project.user_id = current_user.id
