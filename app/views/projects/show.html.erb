@@ -10,18 +10,24 @@
   </div>
 </div>
 
-<div class="row">
+<div class="row" style="display:inline">
   <h3>
     <%= @creator.user_name%> /
     <strong><%= @project.project_name %></strong>
+    <span class="btn-group">
+    <%= button_to '수정', edit_project_path(@project), :class =>"btn btn-default btn-xs", :method => "get" if @editable %>
+    </span>
+    <div class="btn-toolbar pull-right" >
+    <div class="btn-group">
+      <%= button_to "상위 프로젝트", upper_directory_homework_project_path, :class => "btn btn-default", :method => "get" %>
+    </div>
+    <div class="btn-group">
+      <%= button_to "하위 프로젝트", branch_directory_homework_project_path, :class => "btn btn-default", :method => "get" %> 
+    </div>
+    <div class="btn-group">
+      <%= render 'likes/like' %> 
+    </div>
   </h3>
-  <div class="pull-right">
-    <tr><td>
-      <div class="btn-group">
-        <%= render 'likes/like' %> 
-      </div>
-    </td></tr>
-  </div>
 </div>
 <p>
   <strong>Description:</strong>
@@ -41,10 +47,7 @@
     <%= render "comments/form" %>
   </div>
 </div>
-<!-- 라이크 누르면 화면 뒤로갈때 라이크 누르기전 되는 이유 -->
 
+ 
 
-<%= link_to 'Edit', edit_project_path(@project) %> |
-<%= link_to "Root", upper_directory_homework_project_path %> |  
-<%= link_to "Branch", branch_directory_homework_project_path %>
 </div>

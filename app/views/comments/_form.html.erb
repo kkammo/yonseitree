@@ -4,11 +4,12 @@
 			<%= current_user.user_name %></strong>
 		</font>
 	</div>
-	<div class="form-group">
-  <div class="col-md-9">
-  	<input class="form-control" id="comment_body" name="comment[body]"></input>
+  <div class="col-md-11">
+  	<div class="input-group">
+  	<input class="form-control" id="comment_body" name="comment[body]" placeholder="댓글을 입력하세요...">
+  	<span class="input-group-btn">
+        <button class="btn btn-default" type="submit">댓글 달기</button>
+      </span>
   </div>
-  <div class="actions">
-    <%= f.submit "댓글 달기", class: "btn btn-default" %>
-  </div>
+  <div class="col-md-2">
 <% end %>
