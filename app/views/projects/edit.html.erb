@@ -1,5 +1,7 @@
-<h1>프로젝트 수정하기</h1>
+<h2>프로젝트 수정하기
+	<span class="btn-group">
+	      <%= button_to '취소', directory_homework_project_path(@directory_homework, @project), :class =>"btn btn-default", :method => "get" %>
+	</span>
+</h2>
 
 <%= render 'form' %>
-<%= link_to 'Show', @project %> |
-<%= link_to 'Back', projects_path %>
