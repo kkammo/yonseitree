@@ -32,13 +32,15 @@
 
 <%= render html: @content.html_safe %>
 
-<h2>댓글</h2>
-<%= render @project.comments %>
-
-<h2>댓글 달기</h2>
-<%= render "comments/form" %>
-
-
+<div class="row">
+  <h3>댓글</h3>
+  <div class="col-md-12">
+    <table class="table">
+        <%= render @project.comments %>
+    </table>
+    <%= render "comments/form" %>
+  </div>
+</div>
 <!-- 라이크 누르면 화면 뒤로갈때 라이크 누르기전 되는 이유 -->
 
 
