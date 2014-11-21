@@ -18,11 +18,6 @@
   </div>
   
   <div class="collapse navbar-collapse navbar-ex1-collapse">
-    <!-- <ul class="nav navbar-nav">
-      <li class="active"> <%= link_to "Directory", directory_semesters_path %> </li>
-      <li> <%= link_to "Project", projectall_projects_path %> </li>
-    </ul> -->
-
     <%= form_tag search_projects_path, :method => 'get', :class => 'navbar-form navbar-right', :style => 'padding-right: 50px', :role => 'search' do %>
       <div class="form-group">
         <%= text_field_tag :search, params[:search], class: 'form-control', placeholder: '프로젝트 키워드 입력' %>

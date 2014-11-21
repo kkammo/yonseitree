@@ -10,11 +10,7 @@ Rails.application.routes.draw do
 
   resources :projects do
     get 'search', on: :collection
-    get "projectall", on: :collection
-    get "project_show"
-    get "project_edit"
-    delete "project_destroy"
-
+  
     resources :comments
     resources :likes
   end
