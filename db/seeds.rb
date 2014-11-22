@@ -26,7 +26,7 @@ dc0 = DirectoryClass.create! :class_name => "소프트웨어 공학", :directory
 dc1 = DirectoryClass.create! :class_name => "데이터베이스", :directory_semester_id => ds1.id, :user_id => ta2.id
 
 se_hw0 = DirectoryHomework.create! :class_name => "중간 프로젝트", :directory_class_id => dc0.id, :user_id => ta1.id
-se_hw1 = DirectoryHomework.create! :class_name => "기말 프로젝트", :directory_class_id => dc1.id, :user_id => ta1.id
+se_hw1 = DirectoryHomework.create! :class_name => "기말 프로젝트", :directory_class_id => dc0.id, :user_id => ta1.id
 
 
 hw1_p1 = Project.create! :project_name => "기말 프로젝트 - 진순조", :description => "진순조 기말 프로젝트 입니다. 코드는 루비 2.1.2 환경에서 실행 가능 합니다.", :user_name => u1.user_name, :user_id => u1.id, :directory_homework_id => se_hw1.id, :codefile => "http://yonseitree.s3.amazonaws.com/19/23e850721911e4ba50e114c868b8d3/project.rb"
