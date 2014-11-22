@@ -1,15 +1,14 @@
 <html>
   <!-- <head/> -->
 <body>
-  <div id="page-wrap">
-  	<% if flash[:sign_in] %>
+    <% if flash[:sign_in] %>
       <div class="alert alert-danger">
         <h3 class="welcome">로그인이 필요합니다.</h3>
       </div>
     <% end %>
     <% if flash[:permit_not] %>
       <div class="alert alert-danger">
-        <h3 class="welcome">관리자의 승인 이후 이용 가능합니다.</h3>
+        <h3 class="welcome">로그아웃 되었습니다. 관리자의 승인 이후 이용 가능합니다.</h3>
       </div>
     <% end %>
     <% if flash[:admin_not] %>
@@ -17,7 +16,7 @@
         <h3 class="welcome">관리자의 승인 이후 이용 가능합니다.</h3>
       </div>
     <% end %>
-
+  <div id="page-wrap">
     <% if user_signed_in? %>
       <%if current_user.permit %>
 	    
@@ -55,8 +54,6 @@
      <div class="col-ld-9">
           <%= image_tag 'yt_simbol.png', :size => "300x300" %>
       </div>
-      <br>
-     <h2> 관리자의 승인이 필요합니다 </h2>
      <% end %>
   </div>
     <% else%>
