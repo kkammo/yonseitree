@@ -1,4 +1,5 @@
 <button type="button" class="btn btn-default">
+    <!-- 좋아요의 상태는 두가지이다.  이미 좋아요를 눌렀으면 다음은 좋아요 취소 버튼이 활성화되고, 좋아요를 누르지 않은 상태면 좋아요 버튼이 활성화 되어있어야한다.-->
 <% if((@project.likes.exists?(user_id: current_user.id, project_id: @project.id))) %>
 <%= link_to 'Unlike', {:controller => "likes",              
              :action => "destroy",
