@@ -17,6 +17,14 @@ body {
    text-align: center;
 }
 
+::-moz-placeholder {  /* Firefox 19+ */
+   text-align: center;  
+}
+
+:-ms-input-placeholder {  
+   text-align: center; 
+}
+
 #page-wrap {
      width: 900px;
      margin: 0 auto;
