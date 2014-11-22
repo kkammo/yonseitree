@@ -32,16 +32,21 @@
     <% @directory_class.directory_homeworks.each do |homeworks| %>
       <tr>
         <td><%= link_to homeworks.class_name, directory_homework_projects_path(homeworks) %></td>
+
+        <%if current_user.id == @directory_class.user_id %>
         <td>[<%= link_to 'Edit', edit_directory_homework_path(homeworks) %>
-        / <%= link_to 'Destroy', homeworks, method: :delete, data: { confirm: 'Are you sure?' } %>]</td>
+        / <%= link_to 'Destroy', homeworks, method: :delete, data: { confirm: 'Are you sure?' } %>]</td> 
+        <% end %>
       </tr>
     <% end %>
   </table>
 
   <br><br><br>
 
-<% if @directory_class.user_id == current_user.id %>
+<% if @directory_class.user_id == current_user.id%>
   <div class="well well-sm pull-right">
+
+
     <%= form_for([@directory_class, @directory_class.directory_homeworks.build]) do |f| %>
       <p>
         <%= f.label 'Homework Name' %><br>
@@ -54,6 +59,6 @@
 
 
 <%= link_to 'Edit', edit_directory_class_path(@directory_class) %> |
-<%= link_to 'Back', directory_classes_path %>
+<%= link_to 'Back', directory_semester_path(@directory_class.directory_semester_id) %>
 
 </div>

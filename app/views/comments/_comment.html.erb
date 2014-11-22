@@ -1,12 +1,17 @@
-<div class="field">
-    <%= User.find(comment.user_id).user_name %><br />
-    <%= comment.body %><br />
-</div>
-
-<% if (DirectoryClass.find(DirectoryHomework.find(Project.find(comment.project_id).directory_homework_id).directory_class_id).user_id == current_user.id) || comment.user == current_user %>
-
-  <%= link_to 'Destroy Comment', [comment.project, comment],
-               method: :delete,
-               data: { confirm: 'Are you sure?' } %>
-
-<% end %>
+<tr>
+	<td>
+		<div class="col-md-2">
+		    <strong> <font color = "green"> <%= User.find(comment.user_id).user_name %>	</font> </strong>
+		</div>
+		<div class="col-md-9">
+		    <%= comment.body %>
+		</div>
+		<div class="col-md-1">
+		    <% if (DirectoryClass.find(DirectoryHomework.find(Project.find(comment.project_id).directory_homework_id).directory_class_id).user_id == current_user.id) || comment.user == current_user %>
+			  <%= link_to '삭제', [comment.project, comment],
+			               method: :delete,
+			               data: { confirm: 'Are you sure?' } %>
+			<% end %>
+		</div>
+	</td>
+</tr>

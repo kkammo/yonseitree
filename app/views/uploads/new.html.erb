@@ -1,0 +1,19 @@
+<%= javascript_include_tag '//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js' %>
+<div id="page-wrap" >
+	<h1>코드 파일 업로드</h1>
+	<div class="panel panel-default">
+      <div class="panel-heading" style="background-color: ghostwhite">
+				<%= form_for Upload.new, :html => { :id => 'upload' } do |form| %>
+  				<%= transloadit :s3_store %>
+  				<%= form.label :file, ' .cpp, .java, .rb ... 등의 형식을 지원합니다.' %>
+  				<%= form.file_field :file %>
+  				<div class="invisible">
+  					<%= form.number_field :d_id, :value => @d_id %>
+  				</div>
+  				<input name="commit" type="submit" value="업로드" class="btn btn-info btn-lg" >
+				<% end %>
+			</div>
+		</div>
+</div>
+
+<%= transloadit_jquerify :upload, :wait => true %>

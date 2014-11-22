@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
 
+  resources :uploads
+
+  get 'uploads/create'
+
   get 'admin' => 'admin#index'
   get 'admin_permit' => 'admin#change_permit'
 
@@ -10,11 +14,7 @@ Rails.application.routes.draw do
 
   resources :projects do
     get 'search', on: :collection
-    get "projectall", on: :collection
-    get "project_show"
-    get "project_edit"
-    delete "project_destroy"
-
+  
     resources :comments
     resources :likes
   end
@@ -28,7 +28,12 @@ Rails.application.routes.draw do
   end
 
   resources :directory_homeworks do
-    resources :projects
+    resources :uploads
+    resources :projects do
+      get "upper", on: :member
+      get "branch", on: :member
+      get "commit", on: :member
+    end
   end
 
   #resources :directories do
