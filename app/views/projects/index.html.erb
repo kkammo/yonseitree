@@ -12,17 +12,23 @@
 
 <h3><%= link_to @homework.class_name, directory_homework_projects_path(@homework)  %></h3>
   <table class="table table-condensed">
-    <% @projects.each do |project| %>
-      <tr>
-        <td><%= link_to project.project_name, directory_homework_project_path(@homework, project) %></td>
-        <td>
-          Like:
-          <%= project.likes.count %>
-        </td>
-      </tr>
+    <% unless @projects.empty? %>
+      <% @projects.each do |project| %>
+        <tr>
+          <td><%= link_to project.project_name, directory_homework_project_path(@homework, project) %></td>
+          <td>
+            Like:
+            <%= project.likes.count %>
+          </td>
+        </tr>
+      <% end %>
+      <%= paginate @projects %>
+    <% else %>
+      <br/>
+        <h5>프로젝트가 존재하지 않습니다.</h5>
     <% end %>
   </table>
-  <%= paginate @projects unless @projects.nil? %>
+  
 
 <br>
 
