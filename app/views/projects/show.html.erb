@@ -3,6 +3,7 @@
     <p id="notice"></p>
 
   <div class="row">
+    <!--화면 상단의 학기 > 과목 > 숙제 를 나타내는 부분 -->
     <div class="pull-left">
       <%= link_to @semester.semester_name, directory_semester_path(@semester) %> >
       <%= link_to @class.class_name, directory_class_path(@class) %> >
@@ -12,6 +13,7 @@
 
     <div class="row" style="display:inline">
       <h3>
+        <!--프로젝트 이름, 수정, 삭제 버튼-->
         <%= @creator.user_name%> /
         <strong><%= @project.project_name %></strong>
         <% if @project.is_editable(current_user) %>
@@ -22,19 +24,21 @@
           <%= button_to '삭제', directory_homework_project_path(@directory_homework, @project), :class =>"btn btn-default btn-xs", :method => :delete, data: { confirm: '삭제하시겠습니까?' } %>
           </span>
         <% end %>
+        <!-- 상위 프로젝트, 하위 프로젝트, Like를 표시하는 부분-->
         <div class="btn-toolbar pull-right" >
-        <div class="btn-group">
-          <%= button_to "상위 프로젝트", upper_directory_homework_project_path, :class => "btn btn-info", :method => "get" %>
-        </div>
-        <div class="btn-group">
-          <%= button_to "하위 프로젝트", branch_directory_homework_project_path, :class => "btn btn-success", :method => "get" %> 
-        </div>
-        <div class="btn-group">
-          <%= render 'likes/like' %> 
-        </div>
+          <div class="btn-group">
+            <%= button_to "상위 프로젝트", upper_directory_homework_project_path, :class => "btn btn-info", :method => "get" %>
+          </div>
+          <div class="btn-group">
+            <%= button_to "하위 프로젝트", branch_directory_homework_project_path, :class => "btn btn-success", :method => "get" %> 
+          </div>
+          <div class="btn-group">
+            <%= render 'likes/like' %> 
+          </div>
       </h3>
     </div>
 
+    <!--업로드된 코드를 보여주는 부분-->
     <div class="panel panel-default">
       <div class="panel-body">
         /<%= @project.codefile.split(/.*\//)[1] %>
@@ -50,11 +54,11 @@
     </h3>
     </div>
     <div class="well" style="padding-bottom: 20px">
+      <!-- 코드에 대한 설명-->
       <h3><strong>README</strong></h3>
-      <br>
-      <%= @project.description %>
+      <br><%= @project.description %>
     </div>
-
+    <!-- 댓글 구현 -->
     <div class="row">
       <h3>댓글</h3>
       <div class="col-md-12">
