@@ -15,16 +15,16 @@
     <%= link_to '코드 파일 첨부', new_upload_path(:dh_id => @directory_homework.id) %>
 
   <% else %>
-    <br><br>
-    <div class="form-group" style="padding: 10px">
-      <label for="project_name" class="col-lg-3 control-label">
-        <font color = "green">프로젝트 이름</font>
-      </label>
-      <div class="col-lg-7">
-        <input style="border-width:3px; border-style:solid; border-color: skyblue; auto; padding:0px;" id="project_name" name="project[project_name]" type="text" class="form-control" placeholder="프로젝트 이름"/>
+  <br><br>
+  <div class="form-group" style="padding: 10px">
+        <label for="project_name" class="col-lg-3 control-label">
+          <font color = "green">프로젝트 이름</font>
+        </label>
+        <div class="col-lg-7">
+          <input style="border-width:3px; border-style:solid; border-color: skyblue; auto; padding:0px;" id="project_name" name="project[project_name]" type="text" class="form-control" placeholder="프로젝트 이름" value="<%=@project.project_name %>"/>
+        </div>
       </div>
-    </div>
-    <br>
+  <br>
 
     <div class="form-group" style="padding: 10px">
       <label for="project_name" class="col-lg-3 control-label">
@@ -37,10 +37,9 @@
       </div>
     </div>
 
-    <div class="form-group">
-      <div style = "padding:30px" class="col-lg-10">
-            <textarea style="border-width:3px; border-style:solid; border-color: skyblue; auto; padding:10px;" rows = "30" cols = "15" id="description" name="project[description]" type="text_area" class="form-control" placeholder="프로젝트에 대한 설명을 작성 해 주세요." ></textarea>
-      </div>
+  <div class="form-group">
+    <div style = "padding:30px" class="col-lg-10">
+          <textarea style="border-width:3px; border-style:solid; border-color: skyblue; auto; padding:10px;" rows = "10" cols = "15" id="description" name="project[description]" type="text_area" class="form-control" placeholder="프로젝트에 대한 설명을 작성 해 주세요." value="<%=@project.description %>"></textarea>
     </div>
 
     <div class="form-group">
