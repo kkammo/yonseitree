@@ -4,10 +4,12 @@ class DirectorySemestersController < ApplicationController
   
   def index
     @directory_semesters = DirectorySemester.all
+    #semesters to show on #index view
   end
 
   def show
     @directory_semester = DirectorySemester.find(params[:id])
+    #find specific semester to show on view
   end
 
   def new
@@ -17,6 +19,7 @@ class DirectorySemestersController < ApplicationController
   def edit
     @directory_semester = DirectorySemester.find(params[:id])
 
+    #find specific semester to edit
     respond_to do |format|
       format.html #edit.html.erb
       format.xml { render :xml => @directory_semester }
@@ -24,6 +27,7 @@ class DirectorySemestersController < ApplicationController
   end
 
   def create
+    #create new semester, directory_semester_params contains semester attributes
     @directory_semester = DirectorySemester.new(directory_semester_params)
     respond_to do |format|
       if @directory_semester.save
@@ -35,6 +39,8 @@ class DirectorySemestersController < ApplicationController
   end
 
   def update
+
+    #update semester with new attributes, directory_semester_params contains semester attributes
     @directory_semester.update(directory_semester_params)
     respond_to do |format|
       if @directory_semester.save
@@ -46,6 +52,8 @@ class DirectorySemestersController < ApplicationController
   end
 
   def destroy
+
+    #destroy specific semester
     @directory_semester.destroy
     respond_to do |format|
       if @directory_semester.destroy
