@@ -44,11 +44,12 @@
 
     <div class="panel-footer">
       <a href='javascript:void(0)' onclick="this.innerHTML=(this.nextSibling.style.display=='none')?'감추기':'코드 보기';this.nextSibling.style.display=(this.nextSibling.style.display=='none')?'block':'none'";>코드 보기</a><DIV style='display:none'>
+        <br>
         <%= render html: @content.html_safe %>
       </DIV>
     </div>
   </div>
-  
+
   <br><br>
 
   <div class="well" style="padding-bottom: 20px">
