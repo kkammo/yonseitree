@@ -28,7 +28,9 @@ Rails.application.routes.draw do
   end
 
   resources :directory_homeworks do
-    resources :uploads
+    resources :uploads do
+      get "commit", on: :member
+    end
     resources :projects do
       get "upper", on: :member
       get "branch", on: :member
