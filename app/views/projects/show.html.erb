@@ -1,65 +1,72 @@
-<div id="page-wrap" >
-<p id="notice"></p>
+<div id="page-wrap-project" style="background-color: white">
+<div id="page-wrap" style="background-color: white">
+  <p id="notice"></p>
 
-<div class="row">
-  <div class="pull-left">
-    <%= link_to @semester.semester_name, directory_semester_path(@semester) %> >
-    <%= link_to @class.class_name, directory_class_path(@semester) %> >
-    <%= link_to @directory_homework.class_name, directory_homework_projects_path(@directory_homework)  %> >
-    <%= link_to @parent.project_name, directory_homework_project_path(@parent.directory_homework_id, @parent) unless @parent.nil?%>
+  <div class="row">
+    <div class="pull-left">
+      <%= link_to @semester.semester_name, directory_semester_path(@semester) %> >
+      <%= link_to @class.class_name, directory_class_path(@semester) %> >
+      <%= link_to @directory_homework.class_name, directory_homework_projects_path(@directory_homework)  %> >
+      <%= link_to @parent.project_name, directory_homework_project_path(@parent.directory_homework_id, @parent) unless @parent.nil?%>
+    </div>
   </div>
-</div>
 
-<div class="row" style="display:inline">
-  <h3>
-    <%= @creator.user_name%> /
-    <strong><%= @project.project_name %></strong>
-    <% if @project.is_editable(current_user) %>
-      <span class="btn-group">
-      <%= button_to '수정', edit_directory_homework_project_path(@directory_homework, @project), :class =>"btn btn-default btn-xs", :method => "get" %>
-      </span>
-      <span class="btn-group">
-      <%= button_to '삭제', directory_homework_project_path(@directory_homework, @project), :class =>"btn btn-default btn-xs", :method => :delete, data: { confirm: '삭제하시겠습니까?' } %>
-      </span>
-    <% end %>
-    <div class="btn-toolbar pull-right" >
-    <div class="btn-group">
-      <%= button_to "상위 프로젝트", upper_directory_homework_project_path, :class => "btn btn-default", :method => "get" %>
+  <div class="row" style="display:inline">
+    <h3>
+      <%= @creator.user_name%> /
+      <strong><%= @project.project_name %></strong>
+      <% if @project.is_editable(current_user) %>
+        <span class="btn-group">
+        <%= button_to '수정', edit_directory_homework_project_path(@directory_homework, @project), :class =>"btn btn-default btn-xs", :method => "get" %>
+        </span>
+        <span class="btn-group">
+        <%= button_to '삭제', directory_homework_project_path(@directory_homework, @project), :class =>"btn btn-default btn-xs", :method => :delete, data: { confirm: '삭제하시겠습니까?' } %>
+        </span>
+      <% end %>
+      <div class="btn-toolbar pull-right" >
+      <div class="btn-group">
+        <%= button_to "상위 프로젝트", upper_directory_homework_project_path, :class => "btn btn-default", :method => "get" %>
+      </div>
+      <div class="btn-group">
+        <%= button_to "하위 프로젝트", branch_directory_homework_project_path, :class => "btn btn-default", :method => "get" %> 
+      </div>
+      <div class="btn-group">
+        <%= render 'likes/like' %> 
+      </div>
+    </h3>
+  </div>
+
+  <div class="panel panel-default">
+    <div class="panel-body">
+      /<%= @project.codefile.split(/.*\//)[1] %>
+      <%= link_to "코드 저장", @project.codefile, :class => "pull-right" %>
     </div>
-    <div class="btn-group">
-      <%= button_to "하위 프로젝트", branch_directory_homework_project_path, :class => "btn btn-default", :method => "get" %> 
+
+    <div class="panel-footer">
+      <a href='javascript:void(0)' onclick="this.innerHTML=(this.nextSibling.style.display=='none')?'감추기':'코드 보기';this.nextSibling.style.display=(this.nextSibling.style.display=='none')?'block':'none'";>코드 보기</a><DIV style='display:none'>
+        <%= render html: @content.html_safe %>
+      </DIV>
     </div>
-    <div class="btn-group">
-      <%= render 'likes/like' %> 
-    </div>
-  </h3>
-</div>
-<p>
-  <strong>Description:</strong>
-  <div class="well">
-  	<%= @project.description %>
-	</div>
-</p>
+  </div>
+  
+  <br><br>
 
-<h4> /<%= @project.codefile.split(/.*\//)[1] %> </h4>
-<%= render html: @content.html_safe %>
+  <div class="well" style="padding-bottom: 20px">
+    <h3><strong>README</strong></h3>
+    <br>
+    <%= @project.description %>
+  </div>
 
-
-<!-- <pre>
-  <%= @code %>
-</pre> -->
-
-<div class="row">
-  <h3>댓글</h3>
-  <div class="col-md-12">
-    <table class="table">
+  <div class="row" style="padding-top: 100px">
+    <h4 style="padding-left: 20px">댓글</h4>
+    <div class="col-md-12">
+      <table class="table">
         <%= render @project.comments %>
-    </table>
-    <%= render "comments/form" %>
-    <br/><br/>
+      </table>
+      <%= render "comments/form" %>
+      <br/><br/>
+    </div>
   </div>
+
 </div>
-
- 
-
 </div>
