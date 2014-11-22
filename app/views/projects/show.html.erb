@@ -5,7 +5,7 @@
   <div class="row">
     <div class="pull-left">
       <%= link_to @semester.semester_name, directory_semester_path(@semester) %> >
-      <%= link_to @class.class_name, directory_class_path(@semester) %> >
+      <%= link_to @class.class_name, directory_class_path(@class) %> >
       <%= link_to @directory_homework.class_name, directory_homework_projects_path(@directory_homework)  %> >
       <%= link_to @parent.project_name, directory_homework_project_path(@parent.directory_homework_id, @parent) unless @parent.nil?%>
     </div>

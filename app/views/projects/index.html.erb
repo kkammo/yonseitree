@@ -7,10 +7,10 @@
 </ol>
 
 <%= link_to @semester.semester_name, directory_semester_path(@semester) %> >
-<%= link_to @class.class_name, directory_class_path(@semester) %> >
+<%= link_to @class.class_name, directory_class_path(@class) %> >
 
 
-<h3><%= link_to @homework.class_name, directory_homework_projects_path(@homework)  %></h3>
+<h3><%= @homework.class_name %></h3>
   <table class="table table-condensed">
     <% @projects.each do |project| %>
       <tr>
@@ -30,6 +30,6 @@
 
 <br>
 
-<%= link_to 'New Project', new_directory_homework_project_path %>
+<%= link_to '프로젝트 등록', new_directory_homework_project_path, :class => "btn btn-primary" %>
 
 </div>
