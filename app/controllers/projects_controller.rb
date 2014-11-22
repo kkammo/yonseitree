@@ -35,6 +35,7 @@ class ProjectsController < ApplicationController
   def commit
     load_directory_homework
     @parent = Project.find(params[:id])
+    @file_url = params[:codefile_url]
     @project = @directory_homework.projects.new
   end
 

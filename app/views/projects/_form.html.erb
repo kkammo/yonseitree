@@ -16,7 +16,11 @@
     <div class="panel panel-default">
       <div class="panel-body">
         먼저, 코드 파일을 등록하고 프로젝트 형식을 작성합니다.
-        <%= link_to '코드 파일 첨부하기', new_upload_path(:dh_id => @directory_homework.id), :style=>"padding-left: 50px" %>
+        <% if @parent.nil? %>
+          <%= link_to '코드 파일 첨부하기', new_upload_path(:dh_id => @directory_homework.id), :style=>"padding-left: 50px" %>
+        <% else %>
+          <%= link_to '코드 파일 첨부하기', commit_directory_homework_upload_path(@directory_homework.id, @parent.id), :style=>"padding-left: 50px"%>
+        <% end %> 
       </div>
     </div>
 
