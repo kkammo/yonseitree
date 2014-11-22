@@ -10,6 +10,8 @@ class ProjectsController < ApplicationController
     @semester = DirectorySemester.find(@class.directory_semester_id)
     @projects = @homework.projects.where("project_id IS ?", nil).sort_by{|e| -e.likes.count }
     @projects = Kaminari.paginate_array(@projects).page(params[:page]).per(5)
+
+    @users = User.all
   end
 
   def upper

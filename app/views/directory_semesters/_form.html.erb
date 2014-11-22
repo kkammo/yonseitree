@@ -1,3 +1,4 @@
+<!--
 <%= form_for(@directory_semester) do |f| %>
   <% if @directory_semester.errors.any? %>
     <div id="error_explanation">
@@ -11,6 +12,8 @@
     </div>
   <% end %>
 
+
+
   <div class="field">
     <%= f.label :semester_name %><br>
     <%= f.text_field :semester_name %>
@@ -19,3 +22,13 @@
     <%= f.submit %>
   </div>
 <% end %>
+-->
+  <div id = "page_wrap">
+        <%= form_for(@directory_semester) do |f| %>
+          <p>
+          <%= f.label '과목 이름' %><br>
+          <%= f.text_field :semester_name %>
+         <%= f.submit 'NEW', :class => 'btn btn-info' %>
+        </p>
+        <% end %>
+  </div>
