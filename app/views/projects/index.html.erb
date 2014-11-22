@@ -1,16 +1,18 @@
 <div id="page-wrap" >
 
 <ol class="breadcrumb pull-right">
-    <li class="active">
-      <%= @homework.class_name %>
-    </li>
+  <li>
+    <%= link_to @semester.semester_name, directory_semester_path(@semester) %>
+  </li>
+  <li>
+    <%= link_to @class.class_name, directory_class_path(@class) %>
+  </li>
+  <li class="active">
+    <%= @homework.class_name %>
+  </li>
 </ol>
 
-<%= link_to @semester.semester_name, directory_semester_path(@semester) %> >
-<%= link_to @class.class_name, directory_class_path(@class) %> >
-
-
-<h3><%= @homework.class_name %></h3>
+<h3>프로젝트 목록</h3>
   <table class="table table-condensed">
     <% @projects.each do |project| %>
       <tr>

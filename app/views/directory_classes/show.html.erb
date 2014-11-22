@@ -1,33 +1,12 @@
 <div id="page-wrap" >
 
-<!--
-<p>
-  <strong>Class name:</strong>
-  <%= @directory_class.class_name %>
-</p>
-
-
-<p><strong>Classes</strong>
-<% @directory_class.directory_homeworks.each do |homeworks| %>
-	<p>
-		<b>homework name:</b>
-		<%= homeworks.class_name %>	
-		<td><%= link_to 'Show', directory_homework_path(homeworks) %></td>
-		<td><%= link_to 'Edit', edit_directory_homework_path(homeworks) %></td>
-		<td><%= link_to 'Destroy', homeworks, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-	</p>
-
-<% end %>
-
--->
-
 <ol class="breadcrumb pull-right">
     <li class="active">
       <%= @directory_class.class_name %>
     </li>
   </ol>
 
-  <h2>Homeworks</h2>
+  <h2>과제 목록</h2>
   <table class="table table-condensed">
     <% @directory_class.directory_homeworks.each do |homeworks| %>
       <tr>
@@ -56,6 +35,5 @@
     <% end %>
   </div>
 <% end %>
-
 
 </div>
