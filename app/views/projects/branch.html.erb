@@ -12,29 +12,31 @@
 
 <h3><%= @user.user_name%> / <%= link_to @project.project_name, directory_homework_project_path(@project.directory_homework_id, @project) %></h3>
   <table class="table table-condensed">
-    <% @branches.each do |branch| %>
-      <tr>
-        <td><%= link_to branch.project_name, directory_homework_project_path(@project.directory_homework_id, branch) %></td>
-        <td>
-          <div class="btn-group btn-group-xs">
-          <!--<% @project = branch %>
-            <%= render 'likes/like' %> -->
-            Like:
-            <%= branch.likes.count %>
-          </div>
-          <% @project = Project.find(branch.parent_id) %>
-        </td>
-        <td>
-          <%= branch.user_name %>
-        </td>
-       <!-- <% if branch.is_editable(current_user) %>
-          <td>[<%= link_to 'Edit', edit_directory_homework_project_path(@project.directory_homework_id, branch) %>
-          / <%= link_to 'Destroy', directory_homework_project_path(@project.directory_homework_id, branch), method: :delete, data: { confirm: 'Are you sure?' } %>]</td>
-        <% end %> -->
-      </tr>
-    <% end %>
+    <% if @branches.empty? %>
+      <br/>
+        <h5>프로젝트가 존재하지 않습니다.</h5>
+    <% else %>
+      <% @branches.each do |branch| %>
+        <tr>
+          <td><%= link_to branch.project_name, directory_homework_project_path(@project.directory_homework_id, branch) %></td>
+          <td>
+            <div class="btn-group btn-group-xs">
+            <% @project = branch %>
+              <%= render 'likes/like' %>
+            </div>
+            <% @project = Project.find(branch.parent_id) %>
+          </td>
+          <% if branch.is_editable(current_user) %>
+            <td>[<%= link_to 'Edit', edit_directory_homework_project_path(@project.directory_homework_id, branch) %>
+            / <%= link_to 'Destroy', directory_homework_project_path(@project.directory_homework_id, branch), method: :delete, data: { confirm: 'Are you sure?' } %>]</td>
+          <% end %>
+        </tr>
+      <% end %>
+      <%= paginate @branches %>
+    <% end%>
   </table>
-  <%= paginate @branches unless @branches.nil? %>
+  
+  
 <br>
 
 <%= link_to 'Commit', commit_directory_homework_project_path %>

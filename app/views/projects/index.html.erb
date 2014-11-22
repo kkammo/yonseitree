@@ -14,21 +14,22 @@
 
 <h3>프로젝트 목록</h3>
   <table class="table table-condensed">
-    <% @projects.each do |project| %>
-      <tr>
-        <td><%= link_to project.project_name, directory_homework_project_path(@homework, project) %></td>
-        <td>
-          Like:
-          <%= project.likes.count %>
-
-        </td>
-        <td>
-          <%= project.user_name %>
-        </td>
-      </tr>
-    <% end %>
+    <% unless @projects.empty? %>
+      <% @projects.each do |project| %>
+        <tr>
+          <td><%= link_to project.project_name, directory_homework_project_path(@homework, project) %></td>
+          <td>
+            Like:
+            <%= project.likes.count %>
+          </td>
+        </tr>
+      <% end %>
   </table>
-  <%= paginate @projects unless @projects.nil? %>
+  <%= paginate @projects %>
+  <% else %>
+      <br/>
+        <h5>프로젝트가 존재하지 않습니다.</h5>
+  <% end %>
 
 <br>
 
