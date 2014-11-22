@@ -1,15 +1,33 @@
+<br><br>
+<div id="page-wrap" >
 <% if @flash && params[:transloadit] %>
 	<% if params[:transloadit]["results"].length > 0 %>
-		<h2> 파일 첨부 성공! </h2>
-		<p>
-			URL: <%= params[:transloadit]["results"]["encode"][0]["url"] %>
-		</p>
- 		<%= link_to '계속 작성하기', new_directory_homework_project_path(DirectoryHomework.find(@flash), :codefile_url => params[:transloadit]["results"]["encode"][0]["url"]) %>
+		<div class="panel panel-default">
+      <div class="panel-body">
+        <h2><font color="green"> 파일 첨부 성공! </font></h2>
+        <p>
+					URL: <%= params[:transloadit]["results"]["encode"][0]["url"] %>
+				</p>
+				<br>
+				남은 프로젝트 형식을 계속 작성합니다.
+        <%= link_to '계속 작성하기', new_directory_homework_project_path(DirectoryHomework.find(@flash), :codefile_url => params[:transloadit]["results"]["encode"][0]["url"]), :style=>"padding-left: 50px" %>
+      </div>
+    </div>
  	<% else %>
- 		<h2>파일을 첨부하지 않았습니다.</h2>
-		<%= link_to '다시 첨부하기', new_upload_path(:dh_id => @flash) %>
+		<div class="panel panel-default">
+      <div class="panel-body">
+        <font color="red"> 파일이 첨부되지 않았습니다. </font>
+        <%= link_to '다시 첨부하기', new_upload_path(:dh_id => @flash), :style=>"padding-left: 50px" %>
+      </div>
+    </div>
  	<% end %>
+
 <% else %>
-	<h2>업로드에 실패하였습니다.</h2>
-	<%= link_to '다시 첨부하기', new_upload_path(:dh_id => @flash) %>
+	<div class="panel panel-default">
+      <div class="panel-body">
+        <font color="red"> 업로드에 실패하였습니다. </font>
+        <%= link_to '다시 첨부하기', new_upload_path(:dh_id => @flash), :style=>"padding-left: 50px" %>
+     </div>
+   </div>
 <% end %>
+</div>
