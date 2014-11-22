@@ -88,7 +88,8 @@ class ProjectsController < ApplicationController
     load_directory_homework
 
     @project = @directory_homework.projects.new(project_params)
-    @project.project_id = params[:project][:parent_id]
+  #  @project.project_id = params[:project][:parent_id]
+    @project.project_id = 6
     @project.user_id = current_user.id
     @project.user_name = current_user.user_name
     # @project.codefile = params[:project][:file_url]
