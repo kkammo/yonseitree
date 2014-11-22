@@ -10,14 +10,22 @@
 				</p>
 				<br>
 				남은 프로젝트 형식을 계속 작성합니다.
-        <%= link_to '계속 작성하기', new_directory_homework_project_path(DirectoryHomework.find(@flash), :codefile_url => params[:transloadit]["results"]["encode"][0]["url"]), :style=>"padding-left: 50px" %>
+        <% if @parent.nil? %>
+          <%= link_to '계속 작성하기', new_directory_homework_project_path(DirectoryHomework.find(@flash), :codefile_url => params[:transloadit]["results"]["encode"][0]["url"]), :style=>"padding-left: 50px" %>
+        <% else %>
+          <%= link_to '계속 작성하기', commit_directory_homework_project_path(DirectoryHomework.find(@flash), @parent, :codefile_url => params[:transloadit]["results"]["encode"][0]["url"]), :style=>"padding-left: 50px" %>
+        <% end %>
       </div>
     </div>
  	<% else %>
 		<div class="panel panel-default">
       <div class="panel-body">
         <font color="red"> 파일이 첨부되지 않았습니다. </font>
-        <%= link_to '다시 첨부하기', new_upload_path(:dh_id => @flash), :style=>"padding-left: 50px" %>
+        <% if @parent.nil? %>
+          <%= link_to '다시 첨부하기', new_upload_path(:dh_id => @flash), :style=>"padding-left: 50px" %>
+        <% else %>
+          <%= link_to '다시 첨부하기', commit_directory_homework_upload_path(@flash, @parent), :style=>"padding-left: 50px" %>
+        <% end %>
       </div>
     </div>
  	<% end %>
@@ -26,7 +34,11 @@
 	<div class="panel panel-default">
       <div class="panel-body">
         <font color="red"> 업로드에 실패하였습니다. </font>
-        <%= link_to '다시 첨부하기', new_upload_path(:dh_id => @flash), :style=>"padding-left: 50px" %>
+        <% if @parent.nil? %>
+          <%= link_to '다시 첨부하기', new_upload_path(:dh_id => @flash), :style=>"padding-left: 50px" %>
+        <% else %>
+          <%= link_to '다시 첨부하기', commit_directory_homework_upload_path(@flash, @parent), :style=>"padding-left: 50px" %>
+        <% end %>
      </div>
    </div>
 <% end %>
