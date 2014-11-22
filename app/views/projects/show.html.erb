@@ -47,7 +47,7 @@
   <h3>댓글</h3>
   <div class="col-md-12">
     <table class="table">
-        <%= render @project.comments %>
+        <%= render @project.comments.sort_by{ |c| c.created_at } %>
     </table>
     <%= render "comments/form" %>
     <br/><br/>
