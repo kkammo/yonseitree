@@ -9,13 +9,8 @@ class DirectoryClassesController < ApplicationController
 
   def show
     @directory_class = DirectoryClass.find(params[:id])
+    @directory_semester = DirectorySemester.find(@directory_class.directory_semester_id)
     #@directory_homeworks = @directory_class.directory_homeworks
-    #redirect_to directory_homeworks_path(@directory_homeworks)
-    
-    #respond_to do |format|
-    #  format.html #show.html.erb
-    #  format.xml { render :xml => @directory_class }
-    #end
   end
 
   def new

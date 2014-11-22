@@ -1,6 +1,9 @@
 <div id="page-wrap" >
 
-<ol class="breadcrumb pull-right">
+  <ol class="breadcrumb pull-right">
+    <li>
+      <%= link_to @directory_semester.semester_name, directory_semester_path(@directory_semester) %>
+    </li>
     <li class="active">
       <%= @directory_class.class_name %>
     </li>
