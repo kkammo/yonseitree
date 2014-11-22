@@ -1,5 +1,6 @@
 class UploadsController < ApplicationController
 	include Transloadit::Rails::ParamsDecoder
+	before_filter :require_permit
   
   def new
   	@d_id = params[:dh_id]
