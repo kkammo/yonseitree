@@ -1,6 +1,7 @@
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
-
+  config.encoding = "utf-8"
+  config.time_zone = 'Seoul'
   # Code is not reloaded between requests.
   config.cache_classes = true
 
