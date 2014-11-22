@@ -3,8 +3,11 @@
 		<div class="col-md-2">
 		    <strong> <font color = "green"> <%= User.find(comment.user_id).user_name %>	</font> </strong>
 		</div>
-		<div class="col-md-9">
+		<div class="col-md-8">
 		    <%= comment.body %>
+		</div>
+		<div class="col-md-1">
+			<%= comment.created_at %>
 		</div>
 		<div class="col-md-1">
 		    <% if (DirectoryClass.find(DirectoryHomework.find(Project.find(comment.project_id).directory_homework_id).directory_class_id).user_id == current_user.id) || comment.user == current_user %>
