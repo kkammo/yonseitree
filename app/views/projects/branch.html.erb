@@ -1,42 +1,43 @@
+<!-- 해당 프로젝트에 Commit된 프로젝트(하위 프로젝트)의 목록을 보여준다 -->
 <div id="page-wrap" >
+  <ol class="breadcrumb pull-right">
+      <li class="active">
+        <%= @project.project_name %>
+      </li>
+  </ol>
 
-<ol class="breadcrumb pull-right">
-    <li class="active">
-      <%= @project.project_name %>
-    </li>
-</ol>
+  <%= link_to @semester.semester_name, directory_semester_path(@semester) %> >
+  <%= link_to @class.class_name, directory_class_path(@semester) %> >
+  <%= link_to @homework.class_name, directory_homework_projects_path(@homework)  %>
 
-<%= link_to @semester.semester_name, directory_semester_path(@semester) %> >
-<%= link_to @class.class_name, directory_class_path(@semester) %> >
-<%= link_to @homework.class_name, directory_homework_projects_path(@homework)  %>
-
-<h3><%= @user.user_name%> / <%= link_to @project.project_name, directory_homework_project_path(@project.directory_homework_id, @project) %></h3>
+  <h3>
+    <%= @user.user_name%> / <%= link_to @project.project_name, directory_homework_project_path(@project.directory_homework_id, @project) %>
+  </h3>
   <table class="table table-condensed">
     <% if @branches.empty? %>
-      <br/>
-        <h5>프로젝트가 존재하지 않습니다.</h5>
+      <br/><h5>프로젝트가 존재하지 않습니다.</h5>
     <% else %>
       <% @branches.each do |branch| %>
         <tr>
-          <td><%= link_to branch.project_name, directory_homework_project_path(@project.directory_homework_id, branch) %></td>
+          <td><%= link_to branch.project_name, directory_homework_project_path(@project.directory_homework_id, branch) %>
+          </td>
           <td>
             <div class="btn-group btn-group-xs">
-            <% @project = branch %>
+              <% @project = branch %>
               <%= render 'likes/like' %>
             </div>
             <% @project = Project.find(branch.parent_id) %>
           </td>
           <% if branch.is_editable(current_user) %>
-            <td>[<%= link_to 'Edit', edit_directory_homework_project_path(@project.directory_homework_id, branch) %>
-            / <%= link_to 'Destroy', directory_homework_project_path(@project.directory_homework_id, branch), method: :delete, data: { confirm: 'Are you sure?' } %>]</td>
+            <td>
+              [<%= link_to 'Edit', edit_directory_homework_project_path(@project.directory_homework_id, branch) %>
+              / <%= link_to 'Destroy', directory_homework_project_path(@project.directory_homework_id, branch), method: :delete, data: { confirm: 'Are you sure?' } %>]
+            </td>
           <% end %>
         </tr>
       <% end %>
       <%= paginate @branches %>
     <% end%>
   </table>
-  
-  
-<br>
-
-<%= link_to 'Commit', commit_directory_homework_project_path %>
+  <br><%= link_to 'Commit', commit_directory_homework_project_path %>
+</div>

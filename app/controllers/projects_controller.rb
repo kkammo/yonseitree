@@ -8,9 +8,8 @@ class ProjectsController < ApplicationController
     @homework = DirectoryHomework.find(params[:directory_homework_id])
     @class = DirectoryClass.find(@homework.directory_class_id)
     @semester = DirectorySemester.find(@class.directory_semester_id)
-    @projects = @homework.projects.where("project_id IS ?", nil).sort_by{|e| -e.likes.count }
+    @projects = @homework.projects.where("project_id IS ?", nil).sort_by{|e| -e.likes.count } #project를 Like수에 따라 정렬하여 보여준다.
     @projects = Kaminari.paginate_array(@projects).page(params[:page]).per(5)
-
     @users = User.all
   end
 
@@ -28,7 +27,7 @@ class ProjectsController < ApplicationController
     @class = DirectoryClass.find(@homework.directory_class_id)
     @semester = DirectorySemester.find(@class.directory_semester_id)
     @user = User.find(@project.user_id)
-    @branches = Project.where(:project_id => @project.id).all.sort_by{ |e| -e.likes.count }
+    @branches = Project.where(:project_id => @project.id).all.sort_by{ |e| -e.likes.count } #project를 Like수에 따라 정렬하여 보여준다.
     @branches = Kaminari.paginate_array(@branches).page(params[:page]).per(5)
   end
 
@@ -48,7 +47,6 @@ class ProjectsController < ApplicationController
     @creator = User.find(@project.user_id)
     @parent = Project.find(@project.parent_id) unless @project.parent_id.nil?
     @content = CodeRay.scan(URI.parse(@project.codefile).read, set_format(@project.codefile)).div
-    # @content = CodeRay.scan_file('tmp/test.cpp').div
 
     respond_to do |format|
       format.html
@@ -65,7 +63,6 @@ class ProjectsController < ApplicationController
 
   def new
     load_directory_homework
-    #@project = Project.new
     @project = @directory_homework.projects.new
 
     @file_url = params[:codefile_url]
@@ -85,16 +82,13 @@ class ProjectsController < ApplicationController
   end
 
   def create
-    #@project = Project.new(project_params)
     load_directory_homework
 
     @project = @directory_homework.projects.new(project_params)
     @project.project_id = params[:project][:parent_id]
     @project.user_id = current_user.id
     @project.user_name = current_user.user_name
-    # @project.codefile = params[:project][:file_url]
 
-    
     respond_to do |format|
       if @project.save
         format.html { redirect_to [@directory_homework, @project], notice: 'Project created'}
@@ -127,7 +121,6 @@ class ProjectsController < ApplicationController
 
   def search
     if params[:search].length > 0
-
       @projects = Project.search(params[:search])
       @search = String.new(params[:search])
     else
