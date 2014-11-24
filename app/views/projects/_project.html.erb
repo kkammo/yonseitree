@@ -9,7 +9,7 @@
 				<% @parent = Project.find(project.parent_id) unless project.parent_id.nil? %>
 
 				<%= link_to @semester.semester_name, directory_semester_path(@semester) %> >
-				<%= link_to @class.class_name, directory_class_path(@semester) %> >
+				<%= link_to @class.class_name, directory_class_path(@class) %> >
 				<%= link_to @homework.class_name, directory_homework_projects_path(@homework)  %> >
 				<%= link_to @parent.project_name, directory_homework_project_path(@homework, @parent) unless @parent.nil? %>	
 			</h6>
