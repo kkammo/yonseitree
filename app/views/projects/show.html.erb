@@ -48,11 +48,23 @@
       <div class="panel-footer">
         <a href='javascript:void(0)' onclick="this.innerHTML=(this.nextSibling.style.display=='none')?'감추기':'코드 보기';this.nextSibling.style.display=(this.nextSibling.style.display=='none')?'block':'none'";>코드 보기</a><DIV style='display:none'>
           <br>
-          <%= render html: @content.html_safe %>
+            <% format = @project.codefile.split(/.*\./)[1] %>
+            <% if format == "rb" %>
+              <% format = "ruby" %>
+            <% elsif format == "py" %>
+              <% format = "python" %>
+            <% end %>
+            
+            <% if ["c", "cpp", "ruby", "python", "css", "erb", "html", "php", "xml", "yaml", "json", "java", "javascript", "sql"].include? format.downcase %>
+              <%= render html: @content.html_safe %>
+            <% else %>
+              지원하지 않는 형식입니다.
+            <% end %>
         </DIV>
       </div>
     </h3>
     </div>
+
     <div class="well" style="padding-bottom: 20px">
       <!-- 코드에 대한 설명-->
       <h3><strong>README</strong></h3>

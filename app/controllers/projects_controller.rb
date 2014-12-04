@@ -147,6 +147,8 @@ class ProjectsController < ApplicationController
         format = "ruby"
       elsif format == "py"
         format = "python"
+      elsif format == "js"
+        format = "javascript"
       end
       format
     end

@@ -11,7 +11,7 @@ class User < ActiveRecord::Base
  	validates :student_id, presence: true, length: {maximum: 10}, uniqueness: { case_sensitive: false }, format: { with: /\A[0-9]*\z/, message: "ID는 숫자만 입력할 수 있습니다." }
 
   validates :role, presence: true, format: { with: /(\Astudent\z|\Ata\z|\Aadmin\z)/ }
-
+  devise :timeoutable, :timeout_in => 60.minutes
   attr_accessor :login
 
   def self.find_first_by_auth_conditions(warden_conditions)

@@ -12,7 +12,7 @@ class Project < ActiveRecord::Base
 	public	
 		def self.search(query)
 		    # where(:title, query) -> This would return an exact match of the query
-		    where("project_name like ?", "%#{query}%")
+		    where("project_name like ? OR description like ? OR user_name like ?", "%#{query}%", "%#{query}%", "%#{query}%")
 		end
 
 		def parent_id
